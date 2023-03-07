@@ -1,4 +1,5 @@
 import React from "react";
+import { Categories } from "./pages/Categories";
 
 function App() {
 	
@@ -7,7 +8,7 @@ function App() {
 
 	return (
 		<>
-		<h1 className="text-green-500">Hola</h1>
+		<Categories />
 		</>
 	);
 }
