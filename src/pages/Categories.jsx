@@ -1,6 +1,5 @@
 import React from 'react'
 import cincoaños from '../assets/categories/categories5.svg'
-import '../assets/styles/categories.css'
 import seisaños from '../assets/categories/categories6.svg'
 import sieteaños from '../assets/categories/categories7.svg'
 import ochoaños from '../assets/categories/categories8.svg'
