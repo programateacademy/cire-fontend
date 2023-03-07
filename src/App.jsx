@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "./components/organism/Navbar";
 
 function App() {
 	
@@ -7,7 +8,11 @@ function App() {
 
 	return (
 		<>
-		<h1 className="text-green-500">Hola</h1>
+		<div>
+			<div>
+			<Navbar />
+			</div>
+		</div>
 		</>
 	);
 }
