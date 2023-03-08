@@ -104,7 +104,7 @@ function AddStudent() {
           <input type="text" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
         </label>
 
-        <button type="submit">{selectedChild ? 'Save changes' : 'Add book'}</button>
+        <button type="submit">{selectedChild ? 'Save changes' : 'Agregar estudiante'}</button>
         {selectedChild && (
           <button type="button" onClick={() => setSelectedChild(null)}>Cancel</button>
         )}

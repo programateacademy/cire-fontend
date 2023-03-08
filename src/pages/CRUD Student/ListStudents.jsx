@@ -109,32 +109,50 @@ export const ListStudents = () => {
 
   
     return (
-        <div className='bg-indigo-100 h-screen'>
+
+
+
+      
+       <div className='bg-indigo-100 h-screen'>
+
+       <button className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addstudent">Agregar nuevo estudiante</a></button>
+
+
+         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center text-center'>
           {students.map(student => (
-        <div className='max-w-sm w-full lg:max-w-full lg:flex '>
-          <div className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden'>
-              <div className='border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal'>
-                <ul>
-                  <h2 className='text-xl font-semibold font-sans text-zinc-600 text-center text-sky-700'>Información básica</h2>
+        <div className=' bg-white rounded-lg w-96'>
+
+<ul>  
+                  <br />
+                  <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Información básica</h2>
+                  <br />
                   <li>Nombre: {student.name}</li>
                   <li>Edad: {student.age}</li>
                   <li>Sexo: {student.representative}</li>
                   <li>Representante: {student.gender}</li>
                   <li>Celular acudiente: {student.number}</li>
-                  <Link to={`/editstudents/${student.id}`}><li>Editar</li></Link>
-                  <button onClick={() => handleDelete(student.id)}>Delete</button>
+                  <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
+                  <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editstudents/${student.id}`}><li>Editar</li></Link>
+                  <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(student.id)}>Delete</button>
+                  </div>
+
+                  <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>
+
                 </ul>
-              </div>
-          </div>
+
+
+
         </div>
+    
            
           ))}
    
      
 
-        <li className="nav-item"><a href="addstudent">Agregar Estudiante</a></li>
+       
        
       </div>
+       </div>
   )
 }
 
