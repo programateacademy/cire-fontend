@@ -1,0 +1,104 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "juana",
+      "age": "5",
+      "representative": "Lucas",
+      "gender": "Mujer",
+      "number": "123123123"
+    },
+    {
+      "name": "sfsdf",
+      "age": "sdfsdf",
+      "gender": "sdfsdf",
+      "representative": "sdfsdf",
+      "numberCellphone": "sfsdfsdf",
+      "id": 2
+    },
+    {
+      "name": "hola",
+      "age": "ococmov",
+      "gender": "fff",
+      "representative": "isidfshsdf",
+      "numberCellphone": "sdfsdf",
+      "id": 3
+    }
+  ],
+  "nueva": [
+    {
+      "name": "dgdg",
+      "age": "dfgdgd",
+      "representative": "gdfgd",
+      "gender": "gdgdg",
+      "id": "1"
+    },
+    {
+      "name": "juana lopez",
+      "age": "5",
+      "representative": "Lucas",
+      "gender": "Mujer",
+      "numberCellphone": "123123123",
+      "id": "2"
+    }
+  ],
+  "formOnee": [
+    {
+      "id": 1,
+      "academico": {
+        "class": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "cire": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "home": {
+          "description": "juana",
+          "actionplan": "5"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "convivencia": {
+        "school": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "home": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "relationships": {
+          "description": "juana",
+          "actionplan": "5"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "apoyo": {
+        "guidelines": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "accompaniment": {
+          "description": "juana",
+          "actionplan": "5"
+        }
+      }
+    },
+    {
+      "description": "dfhjkh",
+      "actionplan": "fhfgjf",
+      "id": 4
+    },
+    {
+      "description": "sdfgh",
+      "actionplan": "dfghj",
+      "id": 5
+    }
+  ]
+}
