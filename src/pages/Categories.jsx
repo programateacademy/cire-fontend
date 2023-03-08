@@ -38,7 +38,7 @@ export const Categories = () => {
 
 </div>
 
-<div className='bg-indigo-100 grid grid-rows-1 grid-flow-col gap-2 px-24 justify-center'>
+<div className='bg-indigo-100 grid grid-rows-1 grid-flow-col gap-2 mt-1 px-24 justify-center'>
 <div>
     <button>
     <img src={nueveteaños} alt="" />
