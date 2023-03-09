@@ -1,6 +1,6 @@
 import React from "react";
-import LoginAdmin from "./pages/LoginAdmin";
-import LoginProfe from "./pages/LoginProfe"
+import LoginAdmin from "./pages/login/LoginAdmin";
+import LoginProfe from "./pages/login/LoginProfe"
 
 function App() {
 	return (
