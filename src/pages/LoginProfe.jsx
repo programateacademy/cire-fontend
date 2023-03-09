@@ -20,7 +20,6 @@ export default function LoginProfe() {
                     </div>
                     <div className='flex justify-between text-white py-2'>
                         <p className='flex items-center'><input className='mr-2' type="checkbox"/> Remember Me </p>
-                        <p> Forgot Password </p>
                     </div>
                     <button className='w-full my-5 py-2 bg-lime-600 shadow-lg text-white'> Sing In </button>
                 </form>
