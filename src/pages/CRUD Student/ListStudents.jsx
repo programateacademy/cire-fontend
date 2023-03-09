@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+
+
+
 export const ListStudents = () => {
   
     const [students, setStudents] = useState([]);
@@ -11,6 +14,7 @@ export const ListStudents = () => {
   const [gender, setGender] = useState('');
   const [numberCellphone, setNumberCellphone] = useState('');
   const [selectedChild, setSelectedChild] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     axios.get('http://localhost:3001/students')
@@ -22,44 +26,6 @@ export const ListStudents = () => {
       });
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (selectedChild) {
-      axios.put(`http://localhost:3001/students/${selectedChild.id}`, { name, age, year, gender, representative, numberCellphone  })
-        .then(response => {
-          const updatedStudent = students.map(student => {
-            if (student.id === response.data.id) {
-              return response.data;
-            }
-            return student;
-          });
-          setStudents(updatedStudent);
-          setSelectedChild(null);
-          setName('');
-          setAge('');
-          setRepresentative('');
-          setGender('');
-          setNumberCellphone('');
-        
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      axios.post('http://localhost:3001/students', { name, age, gender, representative, numberCellphone })
-        .then(response => {
-          setStudents([...students, response.data]);
-          setName('');
-          setAge('');
-          setRepresentative('');
-          setGender('');
-          setNumberCellphone('');
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-  };
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3001/students/${id}`)
@@ -71,16 +37,12 @@ export const ListStudents = () => {
       });
   };
 
-  const handleEdit = (student) => {
-    setSelectedChild(student);
-    setName(student.name);
-    setAge(student.age);
-    setRepresentative(student.representative);
-    setGender(student.gender);
-    setNumberCellphone(student.number);
-  };
+  const filteredStudents = students.filter(student => {
+    return student.name.toLowerCase().includes(searchTerm.toLowerCase());
+});
+
   
-  const listmovies = students.map(students=> {
+  const listmovies = filteredStudents.map(students=> {
     return(
       <div className='container' key={students.id}>
       <div className='row'>
@@ -101,27 +63,28 @@ export const ListStudents = () => {
   })
   
 
-
-
-
-
-
-
   
     return (
 
-
+      
 
       
        <div className='bg-indigo-100 h-screen'>
-
+        
        <button className=" ml-4 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addstudent">Agregar nuevo estudiante</a></button>
-
-
+          
+       <input
+                    type='text'
+                    placeholder='Buscar por nombre'
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    className='border border-gray-400 p-1 py-px rounded-lg w-60'
+          />
+       
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center text-center'>
-          {students.map(student => (
+          {filteredStudents.map(student => (
         <div className=' bg-white rounded-lg w-96'>
-
+            
+            
 <ul>  
                   <br />
                   <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Información básica</h2>
@@ -140,17 +103,11 @@ export const ListStudents = () => {
 
                 </ul>
 
-
-
         </div>
     
            
           ))}
    
-     
-
-       
-       
       </div>
        </div>
   )
