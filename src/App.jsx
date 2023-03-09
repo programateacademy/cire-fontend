@@ -1,14 +1,13 @@
 import React from "react";
+import LoginAdmin from "./pages/LoginAdmin";
+import LoginProfe from "./pages/LoginProfe"
 
 function App() {
-	
-
-	
-
 	return (
-		<>
-		<h1 className="text-green-500">Hola</h1>
-		</>
+		<div>
+			<LoginProfe/>
+			<LoginAdmin/>
+		</div>
 	);
 }
 
