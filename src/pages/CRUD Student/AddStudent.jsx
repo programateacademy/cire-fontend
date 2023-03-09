@@ -79,36 +79,43 @@ function AddStudent() {
   };
 
   return (
-    <div>
+    <div className='bg-indigo-100 w-screen'>
+
+<div className='max-w-2xl mx-auto p-16'>
+      <div className='grid gap-6 mb-6 lg:grid-cols-1'>
       <form onSubmit={handleSubmit}>
-        <label>
-          Nombre:
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-        <label>
+        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
+          Nombre completo:
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={name} onChange={(e) => setName(e.target.value)} />
+        </label >
+        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Edad:
-          <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
+          <input type="number" required  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={age} onChange={(e) => setAge(e.target.value)} />
         </label>
-        <label>
+        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Representante:
-          <input type="text" value={representative} onChange={(e) => setRepresentative(e.target.value)} />
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={representative} onChange={(e) => setRepresentative(e.target.value)} />
         </label>
 
-        <label>
+        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Género:
-          <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} />
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={gender} onChange={(e) => setGender(e.target.value)} />
         </label>
 
-        <label>
+        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Télefono del representante:
-          <input type="text" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
         </label>
 
-        <button type="submit">{selectedChild ? 'Save changes' : 'Agregar estudiante'}</button>
+        <button className="text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit">{selectedChild ? 'Save changes' : 'Agregar estudiante'}</button>
         {selectedChild && (
           <button type="button" onClick={() => setSelectedChild(null)}>Cancel</button>
         )}
       </form>
+    </div>
+
+    </div>
+
     </div>
   );
 }

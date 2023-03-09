@@ -22,9 +22,9 @@ function App() {
 		 <BrowserRouter>
 		 <Routes>
 			<Route path='/' element={<ListStudents/>}></Route>
-		
+			<Route path='/categories' element={<Categories/>}></Route>
 			<Route path='/addstudent' element={<AddStudent/>}></Route>
-
+			<Route path='/list5years' element={<ListStudents/>}></Route>
 		 <Route path="/editstudents/:id" element={<EditStudent/>} exact></Route>
 
 		 </Routes>

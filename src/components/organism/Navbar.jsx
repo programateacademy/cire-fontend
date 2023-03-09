@@ -62,7 +62,7 @@ export default function Navbar () {
                 >
                     <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                         <li className="text-teal-500 hover:text-blue-600">
-                            <a href="#about">Home</a>
+                            <a href="/categories">Home</a>
                         </li>
                         <li className="text-teal-500 hover:text-blue-600">
                             <a href="#Habilidades">Panel profesionales</a>

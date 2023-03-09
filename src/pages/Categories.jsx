@@ -13,8 +13,8 @@ export const Categories = () => {
 
 <div class="grid grid-rows-2 grid-flow-col gap-2 justify-center mx-5 mt-20">
   <div>
-    <button>
-    <img src={cincoaños} alt="" />
+    <button> <a href="/list5years"> <img src={cincoaños} alt="" /></a>
+   
     </button>
   </div>
 

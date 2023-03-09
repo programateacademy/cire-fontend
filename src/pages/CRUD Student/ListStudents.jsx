@@ -115,7 +115,7 @@ export const ListStudents = () => {
       
        <div className='bg-indigo-100 h-screen'>
 
-       <button className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addstudent">Agregar nuevo estudiante</a></button>
+       <button className=" ml-4 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addstudent">Agregar nuevo estudiante</a></button>
 
 
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center text-center'>
