@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 
 
@@ -21,14 +21,27 @@ export const ListStudents = () => {
   }, []);
 
 
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/students/${id}`)
-      .then(response => {
-        setStudents(students.filter(student => student.id !== id));
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const handleDelete = async (id) => {
+    const confirmDelete = window.alert('¿Estás seguro de eliminar este estudiante?')
+    
+    
+  //   await Swal.fire({text:'¿Está seguro de que desea eliminar este estudiante?', icon: 'warning',
+  
+  // showCancelButton: true,
+  // confirmButtonColor: '#d33',
+  // cancelButtonColor: '#3085d6',
+  // confirmButtonText: 'Sí, eliminar',
+  // cancelButtonText: 'Cancelar'})
+
+    if (confirmDelete) {
+      axios.delete(`http://localhost:3001/students/${id}`)
+        .then(response => {
+          setStudents(students.filter(student => student.id !== id));
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   const filteredStudents = students.filter(student => {
@@ -82,8 +95,8 @@ export const ListStudents = () => {
                   <br />
                   <li>Nombre: {student.name}</li>
                   <li>Edad: {student.age}</li>
-                  <li>Sexo: {student.representative}</li>
-                  <li>Representante: {student.gender}</li>
+                  <li>Representante: {student.representative}</li>
+                  <li>Sexo: {student.gender}</li>
                   <li>Celular acudiente: {student.numberCellphone}</li>
                   <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
                   <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editstudents/${student.id}`}><button>Editar</button></Link>

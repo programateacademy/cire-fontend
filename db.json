@@ -1,44 +1,44 @@
 {
   "students": [
     {
-      "name": "Fabián Ruiz",
+      "name": "Laura Celis",
       "age": "5",
-      "gender": "Masculino",
-      "representative": "Patricia",
-      "numberCellphone": "3205468795",
-      "id": 1
-    },
-    {
-      "name": "María Eugenia",
-      "age": "5",
-      "gender": "Femenino",
-      "representative": "Oscar Rivas",
-      "numberCellphone": "3154785561",
-      "id": 2
-    },
-    {
-      "name": "Miguel López",
-      "age": "5",
-      "gender": "Masculino",
-      "representative": "Samuel López",
-      "numberCellphone": "3205487799",
-      "id": 3
-    },
-    {
-      "name": "Ana Forero Peña",
-      "age": "5",
-      "gender": "Femenino",
-      "representative": "Angélica Melo Forero",
-      "numberCellphone": "3029875566",
-      "id": 4
-    },
-    {
-      "name": "Arturo López",
-      "age": "5",
-      "gender": "Masculino",
-      "representative": "Juan López",
-      "numberCellphone": "3193354785",
+      "gender": "No binario",
+      "representative": "Liliana",
+      "numberCellphone": "45645645",
       "id": 5
+    },
+    {
+      "name": "Joselin",
+      "age": "5",
+      "gender": "Femenino ",
+      "representative": "Mía",
+      "numberCellphone": "315456465",
+      "id": 6
+    },
+    {
+      "name": "Juan Valdez",
+      "age": "5",
+      "gender": "Masculino",
+      "representative": "Miguel Valdez",
+      "numberCellphone": "23456487",
+      "id": 8
+    },
+    {
+      "name": "Esteban Pinto",
+      "age": "5",
+      "gender": "Femenino",
+      "representative": "Luisa Forero",
+      "numberCellphone": "54564654",
+      "id": 9
+    },
+    {
+      "name": "Laura Duarte",
+      "age": "5",
+      "gender": "Femenino",
+      "representative": "Alejandro Duarte",
+      "numberCellphone": "5455787",
+      "id": 10
     }
   ],
   "nueva": [
