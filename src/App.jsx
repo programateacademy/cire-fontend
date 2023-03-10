@@ -8,17 +8,17 @@ import { EditStudent } from "./pages/CRUD Student/EditStudent";
 import AddProfessional from "./pages/CRUD professional/AddProfessional";
 import { ListProfessionals } from "./pages/CRUD professional/ListProfessionals";
 import { EditProfessional } from "./pages/CRUD professional/EditProfessional";
+import LoginAdmin from "./pages/login/LoginAdmin";
+import LoginProfe from "./pages/login/LoginProfe";
 
 
 function App() {
-	
-
-	
-
 	return (
 		<>
 		 <BrowserRouter>
 		 <Navbar />
+		 <LoginProfe/>
+		 <LoginAdmin/>
 		 <Routes>
 			<Route path='/' element={<ListStudents/>}></Route>
 			<Route path='/categories' element={<Categories/>}></Route>
