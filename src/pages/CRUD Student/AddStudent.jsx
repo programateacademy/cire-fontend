@@ -59,25 +59,6 @@ function AddStudent() {
     }
   };
 
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/students/${id}`)
-      .then(response => {
-        setStudents(students.filter(student => student.id !== id));
-        
-      }) 
-      .catch(error => {
-        console.log(error);
-      });
-  };
-
-  const handleEdit = (student) => {
-    setSelectedChild(student);
-    setName(student.name);
-    setAge(student.age);
-    setRepresentative(student.representative);
-    setGender(student.gender);
-    setNumberCellphone(student.number);
-  };
 
   return (
     <div className='bg-indigo-100 w-screen'>
@@ -85,14 +66,17 @@ function AddStudent() {
 <div className='max-w-2xl mx-auto p-16'>
       <div className='grid gap-6 mb-6 lg:grid-cols-1'>
       <form onSubmit={handleSubmit}>
+
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Nombre completo:
           <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={name} onChange={(e) => setName(e.target.value)} />
         </label >
+
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Edad:
           <input type="number" required  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={age} onChange={(e) => setAge(e.target.value)} />
         </label>
+        
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Representante:
           <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={representative} onChange={(e) => setRepresentative(e.target.value)} />

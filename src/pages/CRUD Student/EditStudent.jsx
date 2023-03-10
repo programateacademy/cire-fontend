@@ -19,7 +19,7 @@ const params = useParams()
         setAge(student.age);
         setRepresentative(student.representative);
         setGender(student.gender);
-        setNumberCellphone(student.number); 
+        setNumberCellphone(student.numberCellphone); 
   
     })
   }, [])
