@@ -62,7 +62,6 @@ function AddStudent() {
 
   return (
     <div className='bg-indigo-100 w-screen'>
-
 <div className='max-w-2xl mx-auto p-16'>
       <div className='grid gap-6 mb-6 lg:grid-cols-1'>
       <form onSubmit={handleSubmit}>

@@ -12,19 +12,26 @@ import LoginAdmin from "./pages/login/LoginAdmin";
 import LoginProfe from "./pages/login/LoginProfe";
 
 
+
 function App() {
+
 	return (
 		<>
+		
 		 <BrowserRouter>
-		 <Navbar />
-		 <LoginProfe/>
-		 <LoginAdmin/>
+		 
 		 <Routes>
 			<Route path='/' element={<ListStudents/>}></Route>
 			<Route path='/categories' element={<Categories/>}></Route>
+			<Route path='/loginAdmin' element={<LoginAdmin/>}></Route>
+			<Route path='/loginProfe' element={<LoginProfe/>}></Route>
 			<Route path='/addstudent' element={<AddStudent/>}></Route>
+			<Route path="/editstudents/:id" element={<EditStudent/>} exact></Route>
 			<Route path='/list5years' element={<ListStudents/>}></Route>
-		 <Route path="/editstudents/:id" element={<EditStudent/>} exact></Route>
+			<Route path='/addprofessional' element={<AddProfessional/>}></Route>
+			<Route path='/listprofessional' element={<ListProfessionals/>}></Route>
+			<Route path="/editprofessional/:id" element={<EditProfessional/>} exact></Route>
+			
 
 		 </Routes>
 		 

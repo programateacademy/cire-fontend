@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/organism/NavbarAdmin';
 
 
 
@@ -61,7 +62,7 @@ export const ListStudents = () => {
     return (
 
        <div className='bg-indigo-100 '>
-        
+        <Navbar />
        <button className=" ml-4 bg-lime-700 text-white px-4 rounded-lg mt-5 mb-5 w-60"><a href="addstudent">Agregar nuevo estudiante</a></button>
           
        <input

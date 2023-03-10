@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Navbar from '../../components/organism/NavbarAdmin';
 
 export const ListProfessionals = () => {
   
@@ -15,7 +16,7 @@ export const ListProfessionals = () => {
   const [selectedVolunteer, setSelectedVolunteer] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/Professionals')
+    axios.get('http://localhost:3001/professionals')
       .then(response => {
         setProfessionals(response.data);
       })
@@ -27,7 +28,7 @@ export const ListProfessionals = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (selectedVolunteer) {
-      axios.put(`http://localhost:3001/Professionals/${selectedVolunteer.id}`, { name, age, year, numberid, profession, numbercell, mail, pasword })
+      axios.put(`http://localhost:3001/professionals${selectedVolunteer.id}`, { name, age, profession, numberid, numbercell, mail, pasword })
         .then(response => {
           const updatedProfessional = Professionals.map(Professional => {
             if (Professional.id === response.data.id) {
@@ -50,7 +51,7 @@ export const ListProfessionals = () => {
           console.log(error);
         });
     } else {
-      axios.post('http://localhost:3001/Professionals', { name, age, numberid, profession, numbercell, mail, pasword })
+      axios.post('http://localhost:3001/professionals', { name, age, numberid, profession, numbercell, mail, pasword })
         .then(response => {
           setProfessionals([...Professionals, response.data]);
           setName('');
@@ -68,7 +69,7 @@ export const ListProfessionals = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/Professionals/${id}`)
+    axios.delete(`http://localhost:3001/professionals${id}`)
       .then(response => {
         setProfessionals(Professionals.filter(Professional => Professional.id !== id));
       })
@@ -88,7 +89,7 @@ export const ListProfessionals = () => {
     setPasword(Professional.pasword);
   };
   
-  const listmovies = Professionals.map(Professionals=> {
+  const listprofessional = Professionals.map(Professional => {
     return(
       <div className='container' key={Professionals.id}>
       <div className='row'>
@@ -115,6 +116,7 @@ export const ListProfessionals = () => {
 
       
        <div className='bg-indigo-100 h-screen'>
+        <Navbar />
 
        <button className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addProfessional">Agregar nuevo profesional</a></button>
 
@@ -136,7 +138,7 @@ export const ListProfessionals = () => {
                   <li>Correo: {Professional.mail}</li>
                   <li>Contraseña: {Professional.pasword}</li>
                   <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
-                  <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editProfessionals/${Professional.id}`}><li>Editar</li></Link>
+                  <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editProfessionals/${Professional.id}`}>Editar</Link>
                   <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(Professional.id)}>Delete</button>
                   </div>
 

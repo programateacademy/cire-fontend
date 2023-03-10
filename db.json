@@ -86,6 +86,36 @@
       "mail": "Laura@gmail.com",
       "pasword": "Holiss",
       "id": "1Z1s6B2"
+    },
+    {
+      "name": "Maria fernanda Pantoja",
+      "age": "26",
+      "numberid": "10838392",
+      "profession": "sociologa",
+      "numbercell": "305938373",
+      "mail": "maria@gmail.com",
+      "pasword": "mafe",
+      "id": "Ghf-yEi"
+    },
+    {
+      "name": "Juan jo",
+      "age": "35",
+      "numberid": "18288282",
+      "profession": "Ingeniero de sistemas",
+      "numbercell": "27278228",
+      "mail": "juanji@gmail.com",
+      "pasword": "kkkkkkkkkkkkk",
+      "id": "Vpib7CD"
+    },
+    {
+      "name": "Camila farfan",
+      "age": "26",
+      "numberid": "229329832",
+      "profession": "casa",
+      "numbercell": "23329332",
+      "mail": "camila@gmail.com",
+      "pasword": "123456",
+      "id": "E4DRIRW"
     }
   ]
 }
