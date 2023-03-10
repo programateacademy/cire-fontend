@@ -11,10 +11,14 @@ const params = useParams()
   const [gender, setGender] = useState('');
   const [numberCellphone, setNumberCellphone] = useState('');
 
+
+const id = params.id
+
+
   useEffect(() => {
     axios.get('http://localhost:3001/students/', {id: params.id}).then(res => {
-        console.log(res.data[0]) 
-        const student = res.data[0]
+        console.log(res.data[id-1]) 
+        const student = res.data[id-1]
         setName(student.name);
         setAge(student.age);
         setRepresentative(student.representative);
@@ -39,7 +43,7 @@ const params = useParams()
   
   console.log(ediStudents)
   
-    axios.put('http://localhost:3001/', editstudents)
+    axios.put('http://localhost:3001/students', editstudents)
     .then(res => {
       console.log(res.data)
       alert(res.data)
