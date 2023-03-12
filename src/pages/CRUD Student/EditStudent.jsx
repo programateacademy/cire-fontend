@@ -4,31 +4,28 @@ import { useParams } from 'react-router-dom';
 
 export const EditStudent = () => {
 
-const params = useParams()
+  const params = useParams()
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [representative, setRepresentative] = useState('');
   const [gender, setGender] = useState('');
-  const [numberCellphone, setNumberCellphone] = useState('');
+  const [numberCellphone, setNumberCellphone] = useState('')
 
-
-const id = params.id
-
+  const id = params.id
 
   useEffect(() => {
-    axios.get('http://localhost:3001/students/', {id: params.id}).then(res => {
-        console.log(res.data[id-1]) 
-        const student = res.data[id-1]
+    axios.get(`http://localhost:3000/students/${id}`).then(res => {
+        const student = res.data
         setName(student.name);
         setAge(student.age);
         setRepresentative(student.representative);
         setGender(student.gender);
         setNumberCellphone(student.numberCellphone); 
-  
     })
-  }, [])
+  }, [id])
 
-  function ediStudents(){
+
+  function editStudents(){
 
     var editstudents = {
   
@@ -37,25 +34,19 @@ const id = params.id
       representative: representative,
       gender: gender,
       numberCellphone: numberCellphone,
-      id: params.id
+      id: id
     
     }
   
-  console.log(ediStudents)
-  
-    axios.put('http://localhost:3001/students', editstudents)
-    .then(res => {
-      console.log(res.data)
-      alert(res.data)
-    })
-    .then(err => {
-      console.log(err)
-    })
-  
-  
-  
+    axios.put(`http://localhost:3000/students/${id}`, editstudents)
+      .then(res => {
+        console.log(res.data)
+        alert(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
-
 
 
 
@@ -78,19 +69,27 @@ const id = params.id
           <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={representative} onChange={(e) => setRepresentative(e.target.value)} />
         </label>
 
-        <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
-          Género:
-          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={gender} onChange={(e) => setGender(e.target.value)} />
-        </label>
+        <label htmlFor='gender' className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300"> Género:
+          <select
+           id="gender"
+            required
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+             <option value="">Selecciona una opción</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              </select>
+          </label>
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Télefono del representante:
-          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
+          <input type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
         </label>
 
        
       </div>
-      <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' onClick={ediStudents}>Enviar</button>
+      <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' onClick={editStudents}>Enviar</button>
 
 
    </div>

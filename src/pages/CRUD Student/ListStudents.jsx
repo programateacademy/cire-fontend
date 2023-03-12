@@ -11,7 +11,7 @@ export const ListStudents = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3001/students')
+    axios.get('http://localhost:3000/students')
       .then(response => {
         setStudents(response.data);
       })
@@ -21,20 +21,9 @@ export const ListStudents = () => {
   }, []);
 
 
-  const handleDelete = async (id) => {
-    const confirmDelete = window.alert('¿Estás seguro de eliminar este estudiante?')
-    
-    
-  //   await Swal.fire({text:'¿Está seguro de que desea eliminar este estudiante?', icon: 'warning',
-  
-  // showCancelButton: true,
-  // confirmButtonColor: '#d33',
-  // cancelButtonColor: '#3085d6',
-  // confirmButtonText: 'Sí, eliminar',
-  // cancelButtonText: 'Cancelar'})
-
-    if (confirmDelete) {
-      axios.delete(`http://localhost:3001/students/${id}`)
+  const handleDelete = (id) => {
+ {
+      axios.delete(`http://localhost:3000/students/${id}`)
         .then(response => {
           setStudents(students.filter(student => student.id !== id));
         })
