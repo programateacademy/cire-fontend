@@ -1,6 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import AddProfessional from './AddProfessional';
+import { EditProfessional } from './EditProfessional';
+
+
+
 
 export const ListProfessionals = () => {
   
@@ -23,6 +28,7 @@ export const ListProfessionals = () => {
         console.log(error);
       });
   }, []);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -88,6 +94,18 @@ export const ListProfessionals = () => {
     setPasword(Professional.pasword);
   };
   
+  const [openModal, setOpenModal] = useState(false);
+
+  function closeModal() {
+    setOpenModal(false);
+  }
+
+  const [openModalEdit, setOpenModalEdit] = useState(false);
+
+  function closeModalEdit() {
+    setOpenModalEdit(false);
+  }
+
   const listmovies = Professionals.map(Professionals=> {
     return(
       <div className='container' key={Professionals.id}>
@@ -111,12 +129,14 @@ export const ListProfessionals = () => {
   })
     return (
 
-
-
-      
        <div className='bg-indigo-100 h-screen'>
 
-       <button className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5"><a href="addProfessional">Agregar nuevo profesional</a></button>
+       <button className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5" 
+       type="button"
+       onClick={() => setOpenModal(true)}> Agregar nuevo profesional</button>
+       
+        {openModal && <AddProfessional setOpenModal={setOpenModal} closeModal={closeModal} />}
+    
 
 
          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center text-center'>
@@ -136,8 +156,9 @@ export const ListProfessionals = () => {
                   <li>Correo: {Professional.mail}</li>
                   <li>Contraseña: {Professional.pasword}</li>
                   <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
-                  <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editProfessionals/${Professional.id}`}><li>Editar</li></Link>
+                  <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editProfessionals/${Professional.id}`}  onClick={() => setOpenModalEdit(true)}>Editar</button>
                   <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(Professional.id)}>Delete</button>
+                  {openModalEdit && <EditProfessional setOpenModalEdit={setOpenModalEdit} closeModalEdit={closeModalEdit} />}
                   </div>
 
                  

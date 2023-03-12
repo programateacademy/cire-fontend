@@ -64,9 +64,11 @@ const params = useParams()
 
 
   return (
-        <div className='bg-indigo-100 w-screen'>
-        <div className='max-w-2xl mx-auto p-16'>
-            <div className='grid gap-6 mb-6 lg:grid-cols-1'>
+    <div className='fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
+    <div className='bg-indigo-100'>
+          <div className='p-20'>
+          <div className='grid gap-6 mb-6 lg:grid-cols-1'>
+          <button className='text-dark' onClick={() => setOpenModal(false)}>X</button>
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Nombre:
           <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={name} onChange={(e) => setName(e.target.value)} />    
@@ -105,6 +107,8 @@ const params = useParams()
         <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' onClick={ediProfessionals}>Enviar</button>
     </div>
     </div>
+    </div>
+
   );
   
 }

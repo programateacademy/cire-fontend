@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddProfessional() {
+
+
+function AddProfessional ({ setOpenModal }) {
   const [Professionals, setProfessionals] = useState([]);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -75,6 +77,7 @@ function AddProfessional() {
         console.log(error);
       });
   };
+ 
 
   const handleEdit = (Professional) => {
     setSelectedVolunteer(Professional);
@@ -87,12 +90,16 @@ function AddProfessional() {
     setPasword(Professional.pasword);
   };
 
-  return (
-    <div className='bg-indigo-100 w-screen'>
 
-    <div className='max-w-2xl mx-auto p-16'>
+  return (
+    <div className='fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
+
+    <div className='bg-indigo-100'>
+          <div className='p-20'>
           <div className='grid gap-6 mb-6 lg:grid-cols-1'>
           <form onSubmit={handleSubmit}>
+          <button className='text-dark' onClick={() => setOpenModal(false)}>X</button>
+           
     
             <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
               Nombre completo:
@@ -130,12 +137,10 @@ function AddProfessional() {
             </label>
     
             <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' type="submit">{selectedVolunteer ? 'Save changes' : 'Agregar estudiante'}</button>
-            {selectedVolunteer && (
-              <button type="button" onClick={() => setSelectedVolunteer(null)}>Cancel</button>
-            )}
+            <button className='bg-red-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' onClick={() => setOpenModal(false)}>cancel </button>
           </form>
         </div>
-    
+        </div>
         </div>
     
         </div>
