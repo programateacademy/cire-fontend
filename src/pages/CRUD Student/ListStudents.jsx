@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import AddStudent from './AddStudent';
+import { EditStudent } from './EditStudent';
 
 
 
@@ -36,6 +38,17 @@ export const ListStudents = () => {
     return student.name.toLowerCase().includes(searchTerm.toLowerCase());
 });
 
+const [openModal, setOpenModal] = useState(false);
+
+function closeModal() {
+  setOpenModal(false);
+}
+
+const [openModalEdit, setOpenModalEdit] = useState(false);
+
+function closeModalEdit() {
+  setOpenModalEdit(false);
+}
   
   const listmovies = filteredStudents.map(students=> {
     return(
@@ -63,7 +76,11 @@ export const ListStudents = () => {
 
        <div className='bg-indigo-100 '>
         
-       <button className=" ml-4 bg-lime-700 text-white px-4 rounded-lg mt-5 mb-5 w-60"><a href="addstudent">Agregar nuevo estudiante</a></button>
+       <button className=" ml-4 bg-lime-700 text-white px-4 rounded-lg mt-5 mb-5 w-60"
+       type="button"
+       onClick={() => setOpenModal(true)}> Agregar nuevo estudiante</button>
+
+       {openModal && <AddStudent setOpenModal={setOpenModal} closeModal={closeModal} />}
           
        <input
                     type='text'
@@ -87,8 +104,9 @@ export const ListStudents = () => {
                   <li>Sexo: {student.gender}</li>
                   <li>Celular acudiente: {student.numberCellphone}</li>
                   <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
-                  <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editstudents/${student.id}`}><button>Editar</button></Link>
+                  <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/editstudents/${student.id}`} onClick={() => setOpenModalEdit(true)}>Editar</button>
                   <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' onClick={() => handleDelete(student.id)}>Delete</button>
+                  {openModalEdit && <EditStudent setOpenModalEdit={setOpenModalEdit} closeModalEdit={closeModalEdit} />}
                   </div>
 
                   <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddStudent() {
+function AddStudent({setOpenModal}) {
   const [students, setStudents] = useState([]);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
@@ -61,11 +61,13 @@ function AddStudent() {
 
 
   return (
-    <div className='bg-indigo-100 w-screen'>
-
-<div className='max-w-2xl mx-auto p-16'>
-      <div className='grid gap-6 mb-6 lg:grid-cols-1'>
+    <div className=' fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center' >
+      <div className=' bg-indigo-100'  > 
+    <div className=' p-20 '>
+    <div className='grid gap-6 mb-6 lg:grid-cols-1'>
       <form onSubmit={handleSubmit}>
+
+      <button className='text-dark' onClick={() => setOpenModal(false)}>X</button>
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Nombre completo:
@@ -105,6 +107,7 @@ function AddStudent() {
           <button  onClick={() => setSelectedChild(null)}>Cancel</button>
         )}
       </form>
+    </div>
     </div>
 
     </div>

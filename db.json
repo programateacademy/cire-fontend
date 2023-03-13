@@ -81,12 +81,28 @@
       "id": 16
     },
     {
-      "name": "Lucía",
+      "name": "Juanito Peres",
       "age": "5",
-      "representative": "Vanessa",
-      "gender": "Femenino",
-      "numberCellphone": "315625000",
+      "representative": "Maria Pantojis",
+      "gender": "Masculino",
+      "numberCellphone": "3052837832",
       "id": 17
+    },
+    {
+      "name": "Juanito",
+      "age": "5",
+      "gender": "Masculino",
+      "representative": "Juanita",
+      "numberCellphone": "3053851633",
+      "id": 18
+    },
+    {
+      "name": "Mafe",
+      "age": "5",
+      "gender": "Femenino",
+      "representative": "Maria",
+      "numberCellphone": "3056786578",
+      "id": 19
     }
   ],
   "nueva": [
