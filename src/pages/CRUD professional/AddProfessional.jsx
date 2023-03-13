@@ -27,13 +27,13 @@ function AddProfessional ({ setOpenModal }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (selectedVolunteer) {
-      axios.put(`http://localhost:3001/Professionals/${selectedVolunteer.id}`, { name, age, year, numberid, profession, numbercell, mail, pasword })
+      axios.put(`http://localhost:3000/Professionals/${selectedVolunteer.id}`, { name, age, year, numberid, profession, numbercell, mail, pasword })
         .then(response => {
-          const updatedProfessional = Professionals.map(Professional => {
-            if (Professional.id === response.data.id) {
+          const updatedProfessional = professionals.map(professional => {
+            if (professional.id === response.data.id) {
               return response.data;
             }
-            return Professional;
+            return professional;
           });
           setProfessionals(updatedProfessional);
           setSelectedVolunteer(null);
@@ -50,9 +50,9 @@ function AddProfessional ({ setOpenModal }) {
           console.log(error);
         });
     } else {
-      axios.post('http://localhost:3001/Professionals', { name, age, numberid, profession, numbercell, mail, pasword })
+      axios.post('http://localhost:3000/Professionals', { name, age, numberid, profession, numbercell, mail, pasword })
         .then(response => {
-          setProfessionals([...Professionals, response.data]);
+          setProfessionals([...professionals, response.data]);
           setName('');
           setAge('');
           setProfession('');
@@ -60,34 +60,12 @@ function AddProfessional ({ setOpenModal }) {
           setNumberCellphone('');
           setMail('');
           setPasword('');
-
+          alert('El nuevo profesional ha sido agregado.');
         })
         .catch(error => {
           console.log(error);
         });
     }
-  };
-
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/Professionals/${id}`)
-      .then(response => {
-        setProfessionals(Professionals.filter(Professional => Professional.id !== id));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
- 
-
-  const handleEdit = (Professional) => {
-    setSelectedVolunteer(Professional);
-    setName(Professional.name);
-    setAge(Professional.age);
-    setProfession(Professional.profession);
-    setNumberId(Professional.numberid);
-    setNumberCellphone(Professional.numbercell);
-    setMail(Professional.mail);
-    setPasword(Professional.pasword);
   };
 
 
