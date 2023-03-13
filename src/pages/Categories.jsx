@@ -1,9 +1,9 @@
 import React from 'react'
-import cincoaños from '../assets/categories/categories5.svg'
-import seisaños from '../assets/categories/categories6.svg'
-import sieteaños from '../assets/categories/categories7.svg'
-import ochoaños from '../assets/categories/categories8.svg'
-import nueveteaños from '../assets/categories/categories9.svg'
+import cincoaños from '../assets/images/categories/categories5.svg'
+import seisaños from '../assets/images/categories/categories6.svg'
+import sieteaños from '../assets/images/categories/categories7.svg'
+import ochoaños from '../assets/images/categories/categories8.svg'
+import nueveteaños from '../assets/images/categories/categories9.svg'
 
 export const Categories = () => {
   return (

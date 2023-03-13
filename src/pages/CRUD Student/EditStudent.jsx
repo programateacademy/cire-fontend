@@ -11,6 +11,8 @@ export const EditStudent = () => {
   const [gender, setGender] = useState('');
   const [numberCellphone, setNumberCellphone] = useState('')
 
+
+
   const id = params.id
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export const EditStudent = () => {
         alert(res.data)
       })
       .catch(err => {
-        console.log(err)
+        alert(err)
       })
   }
 
@@ -84,7 +86,7 @@ export const EditStudent = () => {
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Télefono del representante:
-          <input type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
+          <input type="text" pattern="^\d{10}$" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
         </label>
 
        
