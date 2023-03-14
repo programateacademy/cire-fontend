@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
+import React, { useEffect, useCallback } from "react";
 
 
-const Support = ({ formData, setFormData, page, setPage, x, setX }) => {
+const Support = ({ formData, setFormData, page, setPage, x, setX, onSaveFormData }) => {
+  const handleSaveData = (event) => {
+    event.preventDefault();
+    onSaveFormData(formData); // Llamar a la función pasada como prop
+    setPage(2);
+  };
+
+  const saveFormData = useCallback(() => {
+    localStorage.setItem("formulario", JSON.stringify(formData));
+  }, [formData]);
+
+  useEffect(() => {
+    const savedData = localStorage.getItem("formulario");
+    if (savedData) {
+      setFormData(JSON.parse(savedData));
+    }
+  }, [setFormData]);
+
   return (
     <motion.div
       initial={{ x: x }}
@@ -35,7 +53,9 @@ const Support = ({ formData, setFormData, page, setPage, x, setX }) => {
         type="text"
         placeholder="About"
         value={formData.descriptionEight}
-        onChange={(e) => setFormData({ ...formData, descriptionEight: e.target.value })}
+        onChange={(e) =>
+          setFormData({ ...formData, descriptionEight: e.target.value })
+        }
       />
       <label>Plan de acción</label>
       <input
@@ -47,13 +67,8 @@ const Support = ({ formData, setFormData, page, setPage, x, setX }) => {
         }
       />
       <br />
-      <button
-        onClick={() => {
-          alert("You've successfully submitted this form");
-        }}
-      >
-        Submit
-      </button>
+      <button onClick={handleSaveData}>Enviar</button>
+
       <br />
       <button
         onClick={() => {
@@ -67,4 +82,4 @@ const Support = ({ formData, setFormData, page, setPage, x, setX }) => {
   );
 };
 
-export default Support
+export default Support;

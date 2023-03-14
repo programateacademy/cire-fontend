@@ -1,5 +1,17 @@
 import { motion } from "framer-motion";
-const Academic = ({ formData, setFormData, page, setPage, x, setX }) => {
+import { useState, useEffect } from "react";
+
+const Academic = ({ formData, setFormData, page, setPage, x, setX, saveFormData}) => {
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("academicFormData"));
+    if (savedData) {
+      setFormData(savedData);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("academicFormData", JSON.stringify(formData));
+  }, [formData]);
 
   return (
     <motion.div
@@ -15,14 +27,26 @@ const Academic = ({ formData, setFormData, page, setPage, x, setX }) => {
         type="text"
         placeholder="Escribe una descripción"
         value={formData.descriptionOne}
-        onChange={(e) => setFormData({ ...formData, descriptionOne: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, descriptionOne: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, descriptionOne: e.target.value })
+          );
+        }}
       />
       <label>Plan de acción</label>
       <input
         type="text"
         placeholder="Escribe el plan de acción"
         value={formData.actionOne}
-        onChange={(e) => setFormData({ ...formData, actionOne: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, actionOne: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, actionOne: e.target.value })
+          );
+        }}
       />
       <label> Trabajo en ciré</label>
       <label>Descripción</label>
@@ -30,14 +54,26 @@ const Academic = ({ formData, setFormData, page, setPage, x, setX }) => {
         type="text"
         placeholder="Escribe una descripción"
         value={formData.descriptionTwo}
-        onChange={(e) => setFormData({ ...formData, descriptionTwo: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, descriptionTwo: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, descriptionTwo: e.target.value })
+          );
+        }}
       />
       <label>Plan de acción</label>
       <input
         type="text"
         placeholder="Escribe el plan de acción"
         value={formData.actionTwo}
-        onChange={(e) => setFormData({ ...formData, actionTwo: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, actionTwo: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, actionTwo: e.target.value })
+          );
+        }}
       />
       <label> Trabajo en casa</label>
       <label>Descripción</label>
@@ -45,14 +81,26 @@ const Academic = ({ formData, setFormData, page, setPage, x, setX }) => {
         type="text"
         placeholder="Escribe una descripción"
         value={formData.descriptionThree}
-        onChange={(e) => setFormData({ ...formData, descriptionThree: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, descriptionThree: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, descriptionThree: e.target.value })
+          );
+        }}
       />
       <label>Plan de acción</label>
       <input
         type="text"
         placeholder="Escribe el plan de acción"
         value={formData.actionThree}
-        onChange={(e) => setFormData({ ...formData, actionThree: e.target.value })}
+        onChange={(e) => {
+          setFormData({ ...formData, actionThree: e.target.value });
+          localStorage.setItem(
+            "academicFormData",
+            JSON.stringify({ ...formData, actionThree: e.target.value })
+          );
+        }}
       />
       <button
         onClick={() => {
@@ -62,9 +110,9 @@ const Academic = ({ formData, setFormData, page, setPage, x, setX }) => {
       >
         Next
       </button>
-      <br/>
+      <br />
     </motion.div>
   );
 };
 
-export default Academic
+export default Academic;

@@ -1,6 +1,25 @@
-import { motion } from "framer-motion";
-const Coexistence = ({ formData, setFormData, page, setPage, x, setX }) => {
 
+  import { motion } from "framer-motion";
+  import { useEffect, useState } from 'react';
+  
+  const Coexistence = ({ formData, setFormData, page, setPage, x, setX,saveFormData }) => {
+    const [stateFromLocalStorage, setStateFromLocalStorage] = useState(null);
+  
+    // useEffect to load previous state on component mount
+    useEffect(() => {
+      const previousState = JSON.parse(localStorage.getItem('coexistence-page-state'));
+      if (previousState) {
+        setFormData(previousState);
+        setStateFromLocalStorage(previousState);
+      }
+    }, []);
+     
+    // useEffect to save state changes made by user
+    useEffect(() => {
+      localStorage.setItem('coexistence-page-state', JSON.stringify(formData));
+    }, [formData]);
+
+  
   return (
     <motion.div
       initial={{ x: x }}

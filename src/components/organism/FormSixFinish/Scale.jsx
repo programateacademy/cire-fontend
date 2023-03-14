@@ -190,7 +190,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question10}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -205,7 +205,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question11}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -217,7 +217,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question12}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -229,7 +229,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question13}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -241,7 +241,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question14}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -253,7 +253,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question15}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -265,7 +265,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question16}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -277,7 +277,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question17}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -291,7 +291,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           value={formValues.question18}
           onChange={handleInputChange}
         >
-        <option value="">Seleccione una opción</option>
+          <option value="">Seleccione una opción</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
