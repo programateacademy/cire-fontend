@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const FormStudentPartTwo = () => {
+export const FormStudentPartThree = () => {
   const [forms, setForms] = useState([]);
   const [selectedForm, setSelectedForm] = useState(null);
   const [description, setDescription] = useState("");
@@ -187,13 +187,13 @@ export const FormStudentPartTwo = () => {
             {/* Aquí va la sección de cada formulario */}
             {/* <h2 className="text-lg font-bold mb-2">{`Formulario ${item.id}`}</h2> */}
             {/* Sección Académico */}
-            {item.convivencia && (
+            {item.apoyo && (
               <div className="border p-4 rounded-lg mb-4">
                 <h3
                   className="text-md  mb-2 text-rey font-bold"
                   style={{ textAlign: "center", fontSize: "30px" }}
                 >
-                  Académico
+                  Apoyo Familiar
                 </h3>
                 <div className="grid grid-cols-1 gap-4">
                   <div className="text-center">
@@ -204,36 +204,36 @@ export const FormStudentPartTwo = () => {
                       Trabaja en clases
                     </h3>
                   </div>
-                  {item.convivencia.school && (
+                  {item.apoyo.guidelines && (
                     <div div className="col-span-5 sm:col-span-5 ">
                       <label
-                        htmlFor={`school-${item.id}`}
+                        htmlFor={`guidelines-${item.id}`}
                         className="text-green font-semibold"
                       >
                         Descripción:
                       </label>
                       <input
                         type="text"
-                        id={`school-${item.id}`}
-                        value={item.convivencia.school.description}
+                        id={`guidelines-${item.id}`}
+                        value={item.apoyo.guidelines.description}
                         className="border p-2 rounded-md w-full h-20 "
                       />
 
                       <label
-                        htmlFor={`school-actionplan-${item.id}`}
+                        htmlFor={`apoyo-actionplan-${item.id}`}
                         className="text-green font-semibold"
                       >
                         Plan de acción:
                       </label>
                       <input
                         type="text"
-                        id={`school-actionplan-${item.id}`}
-                        value={item.academico.class.actionplan}
+                        id={`apoyo-actionplan-${item.id}`}
+                        value={item.apoyo.guidelines.actionplan}
                         className="border p-2 rounded-md w-full h-20"
                       />
                     </div>
                   )}
-                  {item.convivencia.home && (
+                  {item.apoyo.accompaniment && (
                     <div className="col-span-1 sm:col-span-5 ">
                       <div className="px-4 py-8 sm:px-0">
                         <h3
@@ -244,67 +244,32 @@ export const FormStudentPartTwo = () => {
                         </h3>
                       </div>
                       <label
-                        htmlFor={`home-${item.id}`}
+                        htmlFor={`accompaniment-${item.id}`}
                         className="text-green font-semibold"
                       >
                         Descripción:
                       </label>
                       <input
                         type="text"
-                        id={`home-${item.id}`}
-                        value={item.convivencia.home.description}
+                        id={`accompaniment-${item.id}`}
+                        value={item.apoyo.accompaniment.description}
                         className="border p-2 rounded-md w-full h-20"
                       />
                       <label
-                        htmlFor={`home-actionplan-${item.id}`}
+                        htmlFor={`accompaniment-actionplan-${item.id}`}
                         className="text-green font-semibold"
                       >
                         Plan de acción:
                       </label>
                       <input
                         type="text"
-                        id={`home-actionplan-${item.id}`}
-                        value={item.convivencia.home.actionplan}
+                        id={`accompaniment-actionplan-${item.id}`}
+                        value={item.apoyo.accompaniment.actionplan}
                         className="border p-2 rounded-md w-full h-20 "
                       />
                     </div>
                   )}
-                  {item.convivencia.relationships && (
-                    <div className="col-span-1 sm:col-span-5 ">
-                      <div className="px-4 py-8 sm:px-0">
-                        <h3
-                          className="text-base font-bold leading-6 text-gray-900 text-center"
-                          style={{ fontSize: "22px" }}
-                        >
-                          Trabaja en casa
-                        </h3>
-                      </div>
-                      <label
-                        htmlFor={`relationships-${item.id}`}
-                        className="text-green font-semibold"
-                      >
-                        Descripción:
-                      </label>
-                      <input
-                        type="text"
-                        id={`relationships-${item.id}`}
-                        value={item.convivencia.relationships.description}
-                        className="border p-2 rounded-md w-full h-20"
-                      />
-                      <label
-                        htmlFor={`relationships-actionplan-${item.id}`}
-                        className="text-green font-semibold"
-                      >
-                        Plan de acción:
-                      </label>
-                      <input
-                        type="text"
-                        id={`relationships-actionplan-${item.id}`}
-                        value={item.convivencia.relationships.actionplan}
-                        className="border p-0.5 rounded-md w-full h-20"
-                      />
-                    </div>
-                  )}
+                  
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-8">
                   <a
@@ -315,10 +280,10 @@ export const FormStudentPartTwo = () => {
                   </a>
                   <a
                     href="#works"
-                    className="inline-block px-8 py-3 border bg-rey border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:text-md "
+                    className="inline-block px-8 py-3 border bg-green border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:text-md "
                     style={{ color: "white" }}
                   >
-                    Continuar
+                   Guardar
                   </a>
                 </div>
               </div>

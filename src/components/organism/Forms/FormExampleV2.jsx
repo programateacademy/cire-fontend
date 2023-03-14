@@ -1,94 +1,7 @@
-// import axios from 'axios';
-// import React, { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom';
-
-// export const FormExampleV2 = () => {
-//     const [description, setDescription] = useState([]);
-//     const [actionplan, setActionplan]= useState([]);
-
-//     useEffect(() => {
-//         axios.get('http://localhost:3001/formOnee')
-//           .then(response => {
-//             setStudents(response.data);
-//           })
-//           .catch(error => {
-//             console.log(error);
-//           });
-//       }, []);
-
-//       const handleSubmit = (event) => {
-//         event.preventDefault();
-//         if (selectedChild) {
-//           axios.put(`http://localhost:3001/formOnee'/${selectedChild.id}`, { description,  actionplan })
-//             .then(response => {
-//               const updatedForm = formOnee.map(form => {
-//                 if (form .id === response.data.id) {
-//                   return response.data;
-//                 }
-//                 return form;
-//               });
-//               setStudents(updatedForm);
-//               setSelectedChild(null);
-//               setDescription('');
-//               setActionplan('');
-//             })
-//             .catch(error => {
-//               console.log(error);
-//             });
-//         } else {
-//           axios.post('http://localhost:3001/formOnee', { description,  actionplan })
-//             .then(response => {
-//               setForms([...forms, response.data]);
-//               setDescription('');
-//               setActionplan('');
-//             })
-//             .catch(error => {
-//               console.log(error);
-//             });
-//         }
-//       };
-// }
-
-// const handleDelete = (id) => {
-//     axios.delete(`http://localhost:3001/formOnee/${id}`)
-//       .then(response => {
-//         setForms(formOnee.filter(form => form.id !== id));
-//       })
-//       .catch(error => {
-//         console.log(error);
-//       });
-//   };
-
-//   const handleEdit = (form) => {
-//     setSelectedChild(form);
-//     setDescription(form.description);
-//     setActionplan(form.actionplan);
-//   };
-
-//   return (
-//     <div className='bg-indigo-100 h-screen'>
-//       {forms.map(form => (
-//     <div className='max-w-sm w-full lg:max-w-full lg:flex '>
-//       <div className='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden'>
-//           <div className='border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal'>
-//             <ul>
-//               <h2 className='text-xl font-semibold font-sans text-zinc-600 text-center text-sky-700'>Información básica</h2>
-//               <li>Nombre: {form.description}</li>
-//               <li>Edad: {form.actionplan}</li>
-//               {/* <Link to={`/editstudents/${student.id}`}><li>Editar</li></Link> */}
-//               <button onClick={() => handleDelete(form.id)}>Delete</button>
-//             </ul>
-//           </div>
-//       </div>
-//     </div>
-
-//       ))}
-//       </div>
-//   )
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FormStudentPartTwo } from "./formOne/FormStudentPartTwo";
 
 export const FormExampleV2 = () => {
   const [forms, setForms] = useState([]);
@@ -237,84 +150,190 @@ export const FormExampleV2 = () => {
   };
 
   return (
-    <div className="container mx-auto mt-4 p-4">
-      <h1 className="text-2xl font-bold mb-4">Formulario</h1>
-      {forms.map((item) => (
-        <div key={item.id}>
-          {/* Aquí va la sección de cada formulario */}
-          <h2 className="text-lg font-bold mb-2">{`Formulario ${item.id}`}</h2>
-          {/* Sección Académico */}
-          {item.academico && (
-            <div className="border p-4 rounded-lg mb-4">
-              <h3 className="text-md font-bold mb-2">Académico</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {item.academico.class && (
-                  <>
-                    <label htmlFor={`class-${item.id}`}>
-                      Class Description:
-                    </label>
-                    <input
-                      type="text"
-                      id={`class-${item.id}`}
-                      value={item.academico.class.description}
-                      className="border p-2 rounded-md"
-                    />
-                    <label htmlFor={`class-actionplan-${item.id}`}>
-                      Class Action Plan:
-                    </label>
-                    <input
-                      type="text"
-                      id={`class-actionplan-${item.id}`}
-                      value={item.academico.class.actionplan}
-                      className="border p-2 rounded-md"
-                    />
-                  </>
-                )}
-                {item.academico.cire && (
-                  <>
-                    <label htmlFor={`cire-${item.id}`}>Cire Description:</label>
-                    <input
-                      type="text"
-                      id={`cire-${item.id}`}
-                      value={item.academico.cire.description}
-                      className="border p-2 rounded-md"
-                    />
-                    <label htmlFor={`cire-actionplan-${item.id}`}>
-                      Cire Action Plan:
-                    </label>
-                    <input
-                      type="text"
-                      id={`cire-actionplan-${item.id}`}
-                      value={item.academico.cire.actionplan}
-                      className="border p-2 rounded-md"
-                    />
-                  </>
-                )}
-                {item.academico.home && (
-                  <>
-                    <label htmlFor={`home-${item.id}`}>Home Description:</label>
-                    <input
-                      type="text"
-                      id={`home-${item.id}`}
-                      value={item.academico.home.description}
-                      className="border p-2 rounded-md"
-                    />
-                    <label htmlFor={`home-actionplan-${item.id}`}>
-                      Home Action Plan:
-                    </label>
-                    <input
-                      type="text"
-                      id={`home-actionplan-${item.id}`}
-                      value={item.academico.home.actionplan}
-                      className="border p-2 rounded-md"
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          )}
+    <div className="flex flex-col justify-center ">
+      <div className="flex items-right justify-end ">
+        <div className="flex flex-col mb-5">
+          <h2 className="text-base font-semibold leading-6 text-green">
+            Nombre:Fulanito perez
+          </h2>
         </div>
-      ))}
+        <div className="flex flex-col">
+          <label
+            htmlFor=""
+            className="block text-sm font-medium leading-5 text-gray-900"
+          >
+            Edad:
+          </label>
+          <select
+            id=""
+            name=""
+            autoComplete=""
+            className="text-center block w-20 rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          >
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="container mx-auto mt-4 p-4">
+        <h1 className="text-2xl font-bold mb-4">
+          Formulario de no recuerdo el nombre{" "}
+        </h1>
+        {forms.map((item) => (
+          <div key={item.id} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Aquí va la sección de cada formulario */}
+            {/* <h2 className="text-lg font-bold mb-2">{`Formulario ${item.id}`}</h2> */}
+            {/* Sección Académico */}
+            {item.academico && (
+              <div className="border p-4 rounded-lg mb-4">
+                <h3
+                  className="text-md  mb-2 text-rey font-bold"
+                  style={{ textAlign: "center", fontSize: "30px" }}
+                >
+                  Académico
+                </h3>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="text-center">
+                    <h3
+                      className="text-base font-bold leading-2 text-gray-500 text-center py-8 "
+                      style={{ fontSize: "22px" }}
+                    >
+                      Trabaja en clases
+                    </h3>
+                  </div>
+                  {item.academico.class && (
+                    <div div className="col-span-5 sm:col-span-5 ">
+                      <label
+                        htmlFor={`class-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Descripción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`class-${item.id}`}
+                        value={item.academico.class.description}
+                        className="border p-2 rounded-md w-full h-20 "
+                        
+                      />
+
+                      <label
+                        htmlFor={`class-actionplan-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Plan de acción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`class-actionplan-${item.id}`}
+                        value={item.academico.class.actionplan}
+                        className="border p-2 rounded-md w-full h-20"
+                        
+                      />
+                    </div>
+                  )}
+                  {item.academico.cire && (
+                    <div className="col-span-1 sm:col-span-5 ">
+                      <div className="px-4 py-8 sm:px-0">
+                        <h3
+                          className="text-base font-bold leading-6 text-gray-900 text-center"
+                          style={{ fontSize: "22px" }}
+                        >
+                          Trabaja en CIRÉ
+                        </h3>
+                      </div>
+                      <label
+                        htmlFor={`cire-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Descripción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`cire-${item.id}`}
+                        value={item.academico.cire.description}
+                        className="border p-2 rounded-md w-full h-20"
+                        
+                      />
+                      <label
+                        htmlFor={`cire-actionplan-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Plan de acción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`cire-actionplan-${item.id}`}
+                        value={item.academico.cire.actionplan}
+                        className="border p-2 rounded-md w-full h-20 "
+                        
+                      />
+                    </div>
+                  )}
+                  {item.academico.home && (
+                    <div className="col-span-1 sm:col-span-5 ">
+                      <div className="px-4 py-8 sm:px-0">
+                        <h3
+                          className="text-base font-bold leading-6 text-gray-900 text-center"
+                          style={{ fontSize: "22px" }}
+                        >
+                          Trabaja en casa
+                        </h3>
+                      </div>
+                      <label
+                        htmlFor={`home-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Descripción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`home-${item.id}`}
+                        value={item.academico.home.description}
+                        className="border p-2 rounded-md w-full h-20"
+                        
+                      />
+                      <label
+                        htmlFor={`home-actionplan-${item.id}`}
+                        className="text-green font-semibold"
+                      >
+                        Plan de acción:
+                      </label>
+                      <input
+                        type="text"
+                        id={`home-actionplan-${item.id}`}
+                        value={item.academico.home.actionplan}
+                        className="border p-0.5 rounded-md w-full h-20"
+                        
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-8">
+                  <a
+                    href="#works"
+                    className="inline-block px-8 py-3 text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:text-md border-2 border-green-600"
+                  >
+                    Editar
+                  </a>
+                  {/* <a
+                    href="/ciré/src/components/organism/Forms/formOne/FormStudentPartTwo.jsx"
+                    className="inline-block px-8 py-3 border bg-rey border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:text-md "
+                    style={{ color: "white" }}
+                  >
+                    Continuar
+                  </a> */}
+                  {/* <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to={`/formstudentparttwo`}><li>continuar</li></Link> */}
+                </div>
+              </div>
+            )}
+          </div> 
+        ))}
+      </div>
     </div>
   );
 };

@@ -47,16 +47,16 @@
       "id": 1,
       "academico": {
         "class": {
-          "description": "juana",
-          "actionplan": "5"
+          "description": "Se espera que el niño mejore su respnsabilidad",
+          "actionplan": "realizar actividades x"
         },
         "cire": {
-          "description": "juana",
-          "actionplan": "5"
+          "description": "bien",
+          "actionplan": "bien"
         },
         "home": {
-          "description": "juana",
-          "actionplan": "5"
+          "description": "oli",
+          "actionplan": "chao"
         }
       }
     },
