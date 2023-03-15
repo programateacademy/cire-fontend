@@ -69,13 +69,20 @@ const Cognoscitivo = ({ formData, x, setX }) => {
       animate={{ x: 0 }}
       className="card"
     >
-      <div className="step-title">La Escala de Balance Afectivo</div>
-      <h1>1. poco o nunca</h1>
-      <h1>A veces</h1>
-      <h1>Generalmente o Mucho</h1>
-      <form onSubmit={handleFormSubmit}>
-        <label>¿Se ha sentido molestado por alguien?</label>
+      <div className="step-title text-3xl font-bold my-6">La Escala de Balance Afectivo</div>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+  <div className="col-span-3 sm:col-span-1 rounded-md shadow-md p-6">
+    <h1 className="text-xl font-bold mb-2">1. poco o nunca</h1>
+    <h1 className="text-xl font-bold mb-2">A veces</h1>
+    <h1 className="text-xl font-bold mb-2">Generalmente o Mucho</h1>
+  </div>
+  </div>
+      <table onSubmit={handleFormSubmit} className="grid-template-columns: repeat(5, minmax(0, 1fr))">
+      <thead>
+      <div className="">
+        <label className="">¿Se ha sentido molestado por alguien?</label>
         <select
+        className=""
           name="question1"
           value={formValues.question1}
           onChange={handleInputChange}
@@ -85,7 +92,10 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+        </div>
 
+
+        <div className="w-full md:w-1/4 px-2">
         <label>¿Se ha sentido muy solo o distante de la gente?</label>
         <select
           name="question2"
@@ -97,6 +107,7 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
+        </div>
 
         <label>¿Ha sentido que las cosas iban como usted quería?</label>
         <select
@@ -297,8 +308,9 @@ const Cognoscitivo = ({ formData, x, setX }) => {
           <option value="3">3</option>
         </select>
 
-        <button type="submit">Submit</button>
-      </form>
+        <button className="bg-rey w-60 h-10 rounded font-semibold"  style={{color: 'white'}} type="submit">Submit</button>
+        </thead>
+      </table>
     </motion.div>
   );
 };

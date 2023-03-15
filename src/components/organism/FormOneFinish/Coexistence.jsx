@@ -1,103 +1,117 @@
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from 'react';
+<label>Descripción</label>
+import React, { useEffect, useMemo, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
-const Coexistence = ({ formData, setFormData, page, setPage, x, setX,saveFormData }) => {
-  const [stateFromLocalStorage, setStateFromLocalStorage] = useState(null);
+const Coexistence = ({ formData, setFormData, page, setPage, x, setX }) => {
+  const stateFromLocalStorage = useMemo(() => JSON.parse(localStorage.getItem('coexistence-page-state')), [])
 
-  // useEffect to load previous state on component mount
   useEffect(() => {
-    const previousState = JSON.parse(localStorage.getItem('coexistence-page-state'));
-    if (previousState) {
-      setFormData(previousState);
-      setStateFromLocalStorage(previousState);
+    if (stateFromLocalStorage) {
+      setFormData(stateFromLocalStorage);
     }
-  }, []);
-   
-  // useEffect to save state changes made by user
-  useEffect(() => {
+  }, [stateFromLocalStorage, setFormData]);
+
+  const saveFormChanges = useCallback(() => {
     localStorage.setItem('coexistence-page-state', JSON.stringify(formData));
   }, [formData]);
 
+  useEffect(() => {
+    saveFormChanges();
+  }, [saveFormChanges]);
 
-return (
-  <motion.div
-    initial={{ x: x }}
-    transition={{ duration: 1 }}
-    animate={{ x: 0 }}
-    className="card"
-  >
-    <div className="step-title">Convivencia</div>
-    <label>Comportamiento escolar</label>
-    <label>Descripción</label>
-    <input
-        type="text"
-        placeholder="Escribe una descripción..."
-        className="form-group"
-        value={formData.descriptionFour}
-        onChange={(e) => setFormData({ ...formData, descriptionFour: e.target.value })}
-      />
-      <label>Plan de acción</label>
-    <input
-        type="text"
-        placeholder="Escribe el plan de acción..."
-        className="form-group"
-        value={formData.actionFour}
-        onChange={(e) => setFormData({ ...formData, actionFour: e.target.value })}
-      />
-      <label>comportamiento en casa</label>
-      <label>Descripción</label>
+  const handleInputChange = useCallback((event, inputName) => {
+    const updatedFormData = {
+      ...formData,
+      [inputName]: event.target.value,
+    };
+    setFormData(updatedFormData);
+  }, [setFormData, formData]);
+
+  return (
+    <motion.div
+      initial={{ x: x }}
+      transition={{ duration: 1 }}
+      animate={{ x: 0 }}
+      className="card"
+    >
+      <div className="text-lg font-medium mb-4">Convivencia</div>
+      
+      <label className="block font-medium mb-2">Comportamiento escolar</label>
+      <label className="block mb-1">Descripción</label>
       <input
         type="text"
-        className="form-group"
+        placeholder="Escribe una descripción..."
+        className="form-input mb-2"
+        value={formData.descriptionFour}
+        onChange={(event) => handleInputChange(event, 'descriptionFour')}
+      />
+      <label className="block mb-1">Plan de acción</label>
+      <input
+        type="text"
+        placeholder="Escribe el plan de acción..."
+        className="form-input mb-4"
+        value={formData.actionFour}
+        onChange={(event) => handleInputChange(event, 'actionFour')}
+      />
+      
+      <label className="block font-medium mb-2">Comportamiento en casa</label>
+      <label className="block mb-1">Descripción</label>
+      <input
+        type="text"
+        className="form-input mb-2"
         placeholder="Escribe una descripción..."
         value={formData.descriptionFive}
-        onChange={(e) => setFormData({ ...formData, descriptionFive: e.target.value })}
+        onChange={(event) => handleInputChange(event, 'descriptionFive')}
       />
-       <label>Plan de acción</label>
-    <input
-        type="text"
-        placeholder="Escribe el plan de acción..."
-        className="form-group"
-        value={formData.actionFive}
-        onChange={(e) => setFormData({ ...formData, actionFive: e.target.value })}
-      />
-      <label>relaciones interpersonales</label>
-      <label>descripción</label>
+      <label className="block mb-1">Plan de acción</label>
       <input
         type="text"
-        className="form-group"
+        placeholder="Escribe el plan de acción..."
+        className="form-input mb-4"
+        value={formData.actionFive}
+        onChange={(event) => handleInputChange(event, 'actionFive')}
+      />
+      
+      <label className="block font-medium mb-2">Relaciones interpersonales</label>
+      <label className="block mb-1">Descripción</label>
+      <input
+        type="text"
+        className="form-input mb-2"
         placeholder="Escribe una descripción..."
         value={formData.descriptionSix}
-        onChange={(e) => setFormData({ ...formData, descriptionSix: e.target.value })}
+        onChange={(event) => handleInputChange(event, 'descriptionSix')}
       />
-       <label>Plan de acción</label>
-    <input
+      <label className="block mb-1">Plan de acción</label>
+      <input
         type="text"
         placeholder="Escribe el plan de acción..."
-        className="form-group"
+        className="form-input mb-4"
         value={formData.actionSix}
-        onChange={(e) => setFormData({ ...formData, actionSix: e.target.value })}
+        onChange={(event) => handleInputChange(event, 'actionSix')}
       />
-    <button
-      onClick={() => {
-        setPage(page + 1);
-        setX(1000);
-      }}
-    >
-      Next
-    </button>
-    <br/>
-    <button
-      onClick={() => {
-        setPage(page - 1);
-        setX(-1000);
-      }}
-    >
-      Previous
-    </button>
-  </motion.div>
-);
+      
+      <button
+        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-400 mr-2"
+        onClick={() => {
+          setPage(page + 1);
+          setX(1000);
+        }}
+      >
+        Siguiente
+      </button>
+      <button
+        className="bg-gray-300 text-gray-600 py-2 px-4 rounded hover:bg-gray-400"
+        onClick={() => {
+          setPage(page - 1);
+          setX(-1000);
+        }}
+      >
+        Anterior
+      </button>
+      
+    </motion.div>
+  );
 };
 
-export default Coexistence
+export default Coexistence;
