@@ -1,63 +1,61 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-export const EditStudent = ({setOpenModalEdit}) => {
-
-  const params = useParams()
+export const EditStudent = () => {
+  const { id } = useParams();
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
-  const [representative, setRepresentative] = useState('');
-  const [gender, setGender] = useState('');
-  const [numberCellphone, setNumberCellphone] = useState('')
-
-
-
-  const id = params.id
+  const [namAttendant, setNamAttendant] = useState('');
+  const [sex, setSex] = useState('');
+  const [numAttendant, setNumAttendant] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/students/${id}`).then(res => {
-        const student = res.data
-        setName(student.name);
-        setAge(student.age);
-        setRepresentative(student.representative);
-        setGender(student.gender);
-        setNumberCellphone(student.numberCellphone); 
-    })
-  }, [id])
+    if (id) {
+      axios
+        .get('https://cire-backend.onrender.com/kid', {
+          params: { _id: id },
+        })
+        .then((res) => {
+          const student = res.data.body;
+          setName(student.name);
+          setAge(student.age);
+          setNamAttendant(student.namAttendant);
+          setSex(student.sex);
+          setNumAttendant(student.numAttendant);
+        })
+        .catch((error) => {
+          console.error('Error fetching student:', error);
+        });
+    }
+  }, [id]);
 
-
-  function editStudents(){
-
-    var editstudents = {
-  
+  function editStudents() {
+    const editstudents = {
       name: name,
       age: age,
-      representative: representative,
-      gender: gender,
-      numberCellphone: numberCellphone,
-      id: id
-    
-    }
-  
-    axios.put(`http://localhost:3000/students/${id}`, editstudents)
-      .then(res => {
-        console.log(res.data)
-        alert(res.data)
+      namAttendant: namAttendant,
+      sex: sex,
+      numAttendant: numAttendant,
+    };
+
+    axios
+      .put(`https://cire-backend.onrender.com/kid/${id}`, editstudents)
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data);
       })
-      .catch(err => {
-        alert(err)
-      })
+      .catch((error) => {
+        console.error('Error updating student:', error);
+        alert('Error updating student');
+      });
   }
 
 
-
   return (
-    <div className='fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
-    <div className='bg-indigo-100'>
-          <div className='p-20'>
-          <div className='grid gap-6 mb-6 lg:grid-cols-1'>
-          <button className='text-dark'onClick={() => setOpenModalEdit(false)} >X</button>
+    <div className='bg-indigo-100 w-screen'>
+   <div className='max-w-2xl mx-auto p-16'>
+      <div className='grid gap-6 mb-6 lg:grid-cols-1'>
       <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Nombre completo:
           <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={name} onChange={(e) => setName(e.target.value)} />
@@ -70,15 +68,15 @@ export const EditStudent = ({setOpenModalEdit}) => {
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Representante:
-          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={representative} onChange={(e) => setRepresentative(e.target.value)} />
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={namAttendant} onChange={(e) => setNamAttendant(e.target.value)} />
         </label>
 
         <label htmlFor='gender' className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300"> Género:
           <select
            id="gender"
             required
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
+            value={sex}
+            onChange={(e) => setSex(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
              <option value="">Selecciona una opción</option>
               <option value="Masculino">Masculino</option>
@@ -88,19 +86,26 @@ export const EditStudent = ({setOpenModalEdit}) => {
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Télefono del representante:
-          <input type="text" pattern="^\d{10}$" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
+          <input type="number"  placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numAttendant} onChange={(e) => setNumAttendant(e.target.value)} />
         </label>
 
-       
+      </div >
+     
+      <div className='grid grid-rows-1 grid-flow-col gap-6 px-11 m-14 justify-center'>
+      <button className='bg-lime-700 hover:bg-lime-600 text-white font-bold py-2 px-12 rounded justify-items-center' onClick={editStudents}>Enviar</button>
+
+      <Link to= {'/list5years'}> <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' >Regresar</button></Link>
       </div>
-      <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' onClick={editStudents}>Enviar</button>
 
 
    </div>
-   </div>
-   
         
+   
+
+
     </div>
+
+    
   );
   
 }

@@ -5,14 +5,13 @@ function AddStudent({setOpenModal}) {
   const [students, setStudents] = useState([]);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
-  const [representative, setRepresentative] = useState('');
-  const [gender, setGender] = useState('');
-  const [numberCellphone, setNumberCellphone] = useState('');
-  const [selectedChild, setSelectedChild] = useState(null);
+  const [namAttendant, setNamAttendant] = useState('');
+  const [sex, setSex] = useState('');
+  const [numAttendant, setNumAttendant] = useState('');
 
 
   useEffect(() => {
-    axios.get('http://localhost:3001/students')
+    axios.get('https://cire-backend.onrender.com/kid')
       .then(response => {
         setStudents(response.data);
       })
@@ -24,40 +23,22 @@ function AddStudent({setOpenModal}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedChild) {
-      axios.put(`http://localhost:3000/students/${selectedChild.id}`, { name, age, year, gender, representative, numberCellphone  })
-        .then(response => {
-          const updatedStudent = students.map(student => {
-            if (student.id === response.data.id) {
-              return response.data;
-            }
-            return student;
-          });
-          setStudents(updatedStudent);
-          setSelectedChild(null);
-          setName('');
-          setAge('');
-          setRepresentative('');
-          setGender('');
-          setNumberCellphone('');
-        
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      axios.post('http://localhost:3000/students', { name, age, gender, representative, numberCellphone })
+    
+      axios.post('https://cire-backend.onrender.com/kid/', {  name, age, sex, namAttendant, numAttendant })
       .then(response => {
-        setStudents([...students, response.data]);
+        setStudents([students, response.data.body]);
         setName('');
         setAge('');
-        setRepresentative('');
-        setGender('');
-        setNumberCellphone('');
+        setNamAttendant('');
+        setSex('');
+        setNumAttendant('');
         alert('El nuevo estudiante ha sido agregado.');
       })
+      .catch(error => {
+        alert(error);
+      });
     }
-  };
+  
 
 
   return (
@@ -81,15 +62,15 @@ function AddStudent({setOpenModal}) {
         
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Representante:
-          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={representative} onChange={(e) => setRepresentative(e.target.value)} />
+          <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  value={namAttendant} onChange={(e) => setNamAttendant(e.target.value)} />
         </label>
 
         <label htmlFor='gender' className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300"> Género:
           <select
            id="gender"
             required
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
+            value={sex}
+            onChange={(e) => setSex(e.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
              <option value="">Selecciona una opción</option>
               <option value="Masculino">Masculino</option>
@@ -99,13 +80,11 @@ function AddStudent({setOpenModal}) {
 
         <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
           Télefono del representante:
-          <input type="text" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numberCellphone} onChange={(e) => setNumberCellphone(e.target.value)} />
+          <input type="number" placeholder="Introduce un número de 10 dígitos" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={numAttendant} onChange={(e) =>  setNumAttendant(e.target.value)} />
         </label>
 
-        <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' type="submit">{selectedChild ? 'Save changes' : 'Agregar estudiante'}</button>
-        {selectedChild && (
-          <button  onClick={() => setSelectedChild(null)}>Cancel</button>
-        )}
+        <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center' type="submit"> Agregar estudiante </button>
+    
       </form>
     </div>
     </div>
