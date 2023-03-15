@@ -142,6 +142,9 @@ export const ListStudents = () => {
 
                             <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>
 
+                            <Link to={"/pagination5.2years"}> <button>Scale</button> </Link>
+                            <br />
+                                <Link to={"/pagination5years"}> <button>Crear un perfil Psico – Socio – Escolar del niño.</button> </Link>
                         </ul>
 
                     </div>

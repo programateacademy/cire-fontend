@@ -121,5 +121,64 @@
       "numberCellphone": "123123123",
       "id": "2"
     }
+  ],
+  "formOnee": [
+    {
+      "id": 1,
+      "academico": {
+        "class": {
+          "description": "Se espera que el niño mejore su respnsabilidad",
+          "actionplan": "realizar actividades x"
+        },
+        "cire": {
+          "description": "bien",
+          "actionplan": "bien"
+        },
+        "home": {
+          "description": "oli",
+          "actionplan": "chao"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "convivencia": {
+        "school": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "home": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "relationships": {
+          "description": "juana",
+          "actionplan": "5"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "apoyo": {
+        "guidelines": {
+          "description": "juana",
+          "actionplan": "5"
+        },
+        "accompaniment": {
+          "description": "juana",
+          "actionplan": "5"
+        }
+      }
+    },
+    {
+      "description": "dfhjkh",
+      "actionplan": "fhfgjf",
+      "id": 4
+    },
+    {
+      "description": "sdfgh",
+      "actionplan": "dfghj",
+      "id": 5
+    }
   ]
 }
