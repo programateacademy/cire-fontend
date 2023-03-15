@@ -10,7 +10,7 @@ export const ListStudents = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        axios.get('https://cire-backend.onrender.com/kid').then(response => {
+        axios.get('https://cire-backend.onrender.com/kid?age=5').then(response => {
             setStudents(response.data.body);
         }).catch(error => {
             console.log(error);
@@ -19,16 +19,22 @@ export const ListStudents = () => {
 
 
     const handleDelete = (id) => {
-      axios.delete(`https://cire-backend.onrender.com/kid/${id}`)
-        .then(response => {
-          // actualizar la lista de estudiantes después de eliminar uno
-          setStudents(students.filter(student => student._id !== id));
-        })
-        .catch(error => {
-          console.log(error);
+        swal({
+            title: "¿Quieres eliminar este registro?",
+            text: "Una vez eliminado, no podrás recuperar la información",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then((willDelete) => {
+            if (willDelete) {
+                axios.delete(`https://cire-backend.onrender.com/kid/${id}`).then(response => { // actualizar la lista de estudiantes después de eliminar uno
+                    setStudents(students.filter(student => student._id !== id));
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
         });
     };
-
 
     const filteredStudents = students.filter(student => {
         return student.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -142,9 +148,13 @@ export const ListStudents = () => {
 
                             <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>
 
-                            <Link to={"/pagination5.2years"}> <button>Scale</button> </Link>
-                            <br />
-                                <Link to={"/pagination5years"}> <button>Crear un perfil Psico – Socio – Escolar del niño.</button> </Link>
+                            <Link to={"/pagination5.2years"}>
+                                <button>Scale</button>
+                            </Link>
+                            <br/>
+                            <Link to={"/pagination5years"}>
+                                <button>Crear un perfil Psico – Socio – Escolar del niño.</button>
+                            </Link>
                         </ul>
 
                     </div>

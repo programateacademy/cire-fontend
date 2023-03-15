@@ -22,7 +22,7 @@ function App() {
 			<Route path='/categories' element={<Categories/>}></Route>
 			<Route path='/addstudent' element={<AddStudent/>}></Route>
 			<Route path='/list5years' element={<ListStudents/>}></Route>
-			<Route path="/editstudents/:_id" element={<EditStudent />} exact></Route>
+			<Route path="/editstudents/:id" element={<EditStudent />} exact></Route>
 			<Route path="pagination5years" element={<Pagination />} exact></Route> 
 			<Route path="pagination5.2years" element={<Scale />} exact></Route> 
 		 </Routes>
