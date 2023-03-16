@@ -45,10 +45,10 @@ function AddStudent({setOpenModal}) {
 
 
     return (
-        <div className=' fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center'>
-            <div className=' bg-indigo-100'>
-                <div className=' p-20 '>
-                    <div className='grid gap-6 mb-6 lg:grid-cols-1'>
+        <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+            <div className="bg-indigo-100">
+                <div className="p-20">
+                    <div className="grid gap-6 mb-6 lg:grid-cols-1">
                         <form onSubmit={handleSubmit}>
 
                             <button className='text-dark'

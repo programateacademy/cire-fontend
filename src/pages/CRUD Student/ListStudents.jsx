@@ -2,12 +2,14 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import AddStudent from './AddStudent';
+import { EditStudent } from './EditStudent';
 
 
 export const ListStudents = () => {
 
     const [students, setStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
         axios.get('https://cire-backend.onrender.com/kid?age=5').then(response => {
@@ -44,6 +46,12 @@ export const ListStudents = () => {
 
     function closeModal() {
         setOpenModal(false);
+    }
+
+    const [openModalEdit, setOpenModalEdit] = useState(false);
+
+    function closeModalEdit() {
+      setOpenModalEdit(false);
     }
 
     const listmovies = filteredStudents.map(students => {
@@ -132,18 +140,27 @@ export const ListStudents = () => {
                                 student.numAttendant
                             }</li>
                             <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
-                                <Link className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-                                    to={
-                                        `/editstudents/${
-                                            student._id
-                                        }`
-                                }>
-                                    <button>Editar</button>
-                                </Link>
+                            <button
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => {
+                    setOpenModalEdit(true);
+                    setSelectedStudent(student._id);
+                  }}
+                >
+                  Editar
+                </button>
                                 <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
                                     onClick={
                                         () => handleDelete(student._id)
                                 }>Delete</button>
+                                  {openModalEdit && (
+                  <EditStudent
+                    studentId={selectedStudent}
+                    setOpenModalEdit={setOpenModalEdit}
+                    closeModalEdit={closeModalEdit}
+                    student={selectedStudent}
+                  />
+                )}
                             </div>
 
                             <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>
