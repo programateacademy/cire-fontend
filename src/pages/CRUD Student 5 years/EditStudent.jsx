@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-
+import Swal from 'sweetalert2'
 
 export const EditStudent = ({ setOpenModalEdit, studentId }) => {
     
@@ -29,24 +29,41 @@ export const EditStudent = ({ setOpenModalEdit, studentId }) => {
 
 
 
-    function editStudents() {
-        const editstudents = {
-            name: name,
-            age: age,
-            namAttendant: namAttendant,
-            sex: sex,
-            numAttendant: numAttendant
-        };
-
-        axios.put(`https://cire-backend.onrender.com/kid/${studentId}`, editstudents).then((res) => {
-            console.log(res.data.body);
-            alert(res.data.body);
-        }).catch((error) => {
-            console.error('Error updating student:', error);
-            alert('Error updating student');
-        });
-    }
-
+        function editStudents() {
+            const editstudents = {
+              name: name,
+              age: age,
+              namAttendant: namAttendant,
+              sex: sex,
+              numAttendant: numAttendant
+            };
+          
+            Swal.fire({
+              title: '¿Está seguro de que desea guardar los cambios?',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonText: 'Sí',
+              cancelButtonText: 'No'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                axios.put(`https://cire-backend.onrender.com/kid/${studentId}`, editstudents)
+                  .then((res) => {
+                    console.log(res.data.body);
+                    Swal.fire({
+                      title: 'Cambios guardados',
+                      icon: 'success'
+                    });
+                  })
+                  .catch((error) => {
+                    console.error('Error updating student:', error);
+                    Swal.fire({
+                      title: 'Error al actualizar al estudiante',
+                      icon: 'error'
+                    });
+                  });
+              }
+            });
+          }
 
     return (
         <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 function AddStudent({setOpenModal}) {
@@ -37,7 +37,7 @@ function AddStudent({setOpenModal}) {
             setNamAttendant('');
             setSex('');
             setNumAttendant('');
-            swal({title: "El estudiante se agregó correctamente"})
+            Swal.fire({title: "El estudiante se agregó correctamente"})
         }).catch(error => {
             alert(error);
         });
