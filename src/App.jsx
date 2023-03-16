@@ -1,9 +1,9 @@
 import React from "react";
 import { Categories } from "./pages/Categories";
-import AddStudent from "./pages/CRUD Student/AddStudent";
-import { ListStudents } from "./pages/CRUD Student/ListStudents";
+import AddStudent from "./pages/CRUD Student 5 years/AddStudent";
+import { ListStudents } from "./pages/CRUD Student 5 years/ListStudents";
 import {BrowserRouter, Routes, Route} from 'react-router-dom' 
-import { EditStudent } from "./pages/CRUD Student/EditStudent";
+import { EditStudent } from "./pages/CRUD Student 5 years/EditStudent";
 import Navbar from "./components/organism/Navbar";
 import  Pagination  from "./components/organism/FormOneFinish/Pagination";
 import  Scale  from "./components/organism/FormSixFinish/Scale";
