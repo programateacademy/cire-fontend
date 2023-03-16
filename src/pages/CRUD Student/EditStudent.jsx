@@ -10,9 +10,10 @@ export const EditStudent = () => {
     const [sex, setSex] = useState('');
     const [numAttendant, setNumAttendant] = useState('');
     const params = useParams()
+
     useEffect(() => {
         if (id) {
-            axios.get('https://cire-backend.onrender.com/kid?age=5', {_id: params._id}).then((res) => {
+            axios.get(`https://cire-backend.onrender.com/kid/${id}`).then((res) => {
                 const student = res.data.body;
                 setName(student.name);
                 setAge(student.age);
@@ -40,8 +41,8 @@ export const EditStudent = () => {
         };
 
         axios.put(`https://cire-backend.onrender.com/kid/${id}`, editstudents).then((res) => {
-            console.log(res.data);
-            alert(res.data);
+            console.log(res.data.body);
+            alert(res.data.body);
         }).catch((error) => {
             console.error('Error updating student:', error);
             alert('Error updating student');
