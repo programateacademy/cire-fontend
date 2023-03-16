@@ -5,25 +5,26 @@ import { useParams } from "react-router-dom";
 export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [profession, setProfession] = useState("");
+  const [occupation, setOccupation] = useState("");
   const [numberid, setNumberId] = useState("");
-  const [numbercell, setNumberCellphone] = useState("");
-  const [mail, setMail] = useState("");
-  const [pasword, setPasword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/professionals/${professionalId}`)
+      .get(`https://cire-backend.onrender.com/professional/${professionalId}`)
       .then((res) => {
         console.log(professionalId);
-        const professional = res.data;
+        console.log(res.data.body)
+        const professional = res.data.body;
         setName(professional.name);
         setAge(professional.age);
-        setProfession(professional.profession);
+        setOccupation(professional.occupation);
         setNumberId(professional.numberid);
-        setNumberCellphone(professional.numbercell);
-        setMail(professional.mail);
-        setPasword(professional.pasword);
+        setPhone(professional.phone);
+        setEmail(professional.email);
+        setPassword(professional.password);
       });
   }, []);
 
@@ -31,21 +32,22 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
     let editprofessionals = {
       name: name,
       age: age,
-      profession: profession,
+      occupation: occupation,
       numberId: numberid,
-      numberCellphone: numbercell,
-      mail: mail,
-      pasword: pasword,
+      phone: phone,
+      email: email,
+      password: password,
     };
 
     axios
-      .put(`http://localhost:3000/professionals/${professionalId}`, editprofessionals)
+      .put(`https://cire-backend.onrender.com/professional/${professionalId}`, editprofessionals)
       .then((res) => {
-        console.log(res.data);
-        alert(res.data);
+        console.log(res.data.body);
+        alert(res.data.body);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error('Error updating student:', error);
+        alert('Error updating student');
       });
   }
 
@@ -87,8 +89,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={profession}
-                  onChange={(e) => setProfession(e.target.value)}
+                  value={occupation}
+                  onChange={(e) => setOccupation(e.target.value)}
                 />
               </label>
 
@@ -109,8 +111,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={numbercell}
-                  onChange={(e) => setNumberCellphone(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </label>
 
@@ -120,8 +122,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
 
@@ -131,8 +133,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={pasword}
-                  onChange={(e) => setPasword(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
             </form>

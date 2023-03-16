@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddProfessional from "./AddProfessional";
 import { EditProfessional } from "./EditProfessional";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import Navbar from "../../components/organism/NavbarAdmin";
+import swal from 'sweetalert';
 
 export const ListProfessionals = () => {
   const [professionals, setProfessionals] = useState([]);
@@ -13,9 +13,9 @@ export const ListProfessionals = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/professionals")
+      .get("https://cire-backend.onrender.com/professional")
       .then((response) => {
-        setProfessionals(response.data);
+        setProfessionals(response.data.body);
       })
       .catch((error) => {
         console.log(error);
@@ -23,17 +23,22 @@ export const ListProfessionals = () => {
   }, []);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:3000/Professionals/${id}`)
-      .then((response) => {
-        setProfessionals(
-          professionals.filter((professional) => professional.id !== id)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    swal({
+        title: "¿Quieres eliminar este registro?",
+        text: "Una vez eliminado, no podrás recuperar la información",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+    }).then((willDelete) => {
+        if (willDelete) {
+            axios.delete(`https://cire-backend.onrender.com/professional/${id}`).then(response => { // actualizar la lista de estudiantes después de eliminar uno
+                setProfessionals(professionals.filter(professional => professional._id !== id));
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    });
+};
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -47,8 +52,8 @@ export const ListProfessionals = () => {
     setOpenModalEdit(false);
   }
 
-  const filteredProfessionals = professionals.filter((professional) => {
-    return professional.name.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredProfessionals = professionals.filter(professional => {
+    return professional.name && professional.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const listmovies = filteredProfessionals.map((professionals) => {
@@ -59,11 +64,11 @@ export const ListProfessionals = () => {
             <ul className="list-group">
               <li className="list-group-item-title">{professionals.name}</li>
               <li className="list-group-item">{professionals.age}</li>
-              <li className="list-group-item">{professionals.profession}</li>
+              <li className="list-group-item">{professionals.occupation}</li>
               <li className="list-group-item">{professionals.numberid}</li>
-              <li className="list-group-item">{professionals.numbercell}</li>
-              <li className="list-group-item">{professionals.mail}</li>
-              <li className="list-group-item">{professionals.pasword}</li>
+              <li className="list-group-item">{professionals.phone}</li>
+              <li className="list-group-item">{professionals.email}</li>
+              <li className="list-group-item">{professionals.password}</li>
             </ul>
           </div>
         </div>
@@ -103,27 +108,27 @@ export const ListProfessionals = () => {
               <br />
               <li>Nombre: {professional.name}</li>
               <li>Edad: {professional.age}</li>
-              <li>Profesión: {professional.profession}</li>
+              <li>Profesión: {professional.occupation}</li>
               <li>Cedula de ciudadania: {professional.numberid}</li>
-              <li>Celular del profesional: {professional.numbercell}</li>
+              <li>Celular del profesional: {professional.phone}</li>
               <h2 className="text-xl font-semibold font-sans text-center text-sky-700">
                 Cuenta para ingreso a la plataforma
               </h2>
-              <li>Correo: {professional.mail}</li>
-              <li>Contraseña: {professional.pasword}</li>
+              <li>Correo: {professional.email}</li>
+              <li>Contraseña: {professional.password}</li>
               <div className="grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center">
                 <button
                   className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   onClick={() => {
                     setOpenModalEdit(true);
-                    setSelectedProfessional(professional.id);
+                    setSelectedProfessional(professional._id);
                   }}
                 >
                   Editar
                 </button>
                 <button
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleDelete(professional.id)}
+                  onClick={() => handleDelete(professional._id)}
                 >
                   Delete
                 </button>

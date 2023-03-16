@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 function AddProfessional({ setOpenModal }) {
   const [professionals, setProfessionals] = useState([]);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [profession, setProfession] = useState("");
+  const [occupation, setOccupation] = useState("");
   const [numberid, setNumberId] = useState("");
-  const [numbercell, setNumberCellphone] = useState("");
-  const [mail, setMail] = useState("");
-  const [pasword, setPasword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [selectedVolunteer, setSelectedVolunteer] = useState(null);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/Professionals")
+      .get("https://cire-backend.onrender.com/professional")
       .then((response) => {
         setProfessionals(response.data);
       })
@@ -25,65 +26,30 @@ function AddProfessional({ setOpenModal }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedVolunteer) {
-      axios
-        .put(`http://localhost:3000/Professionals/${selectedVolunteer.id}`, {
-          name,
-          age,
-          year,
-          numberid,
-          profession,
-          numbercell,
-          mail,
-          pasword,
-        })
-        .then((response) => {
-          const updatedProfessional = professionals.map((professional) => {
-            if (professional.id === response.data.id) {
-              return response.data;
-            }
-            return professional;
-          });
-          setProfessionals(updatedProfessional);
-          setSelectedVolunteer(null);
-          setName("");
-          setAge("");
-          setProfession("");
-          setNumberId("");
-          setNumberCellphone("");
-          setMail("");
-          setPasword("");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      axios
-        .post("http://localhost:3000/Professionals", {
-          name,
-          age,
-          numberid,
-          profession,
-          numbercell,
-          mail,
-          pasword,
-        })
-        .then((response) => {
-          setProfessionals([...professionals, response.data]);
-          setName("");
-          setAge("");
-          setProfession("");
-          setNumberId("");
-          setNumberCellphone("");
-          setMail("");
-          setPasword("");
-          alert("El nuevo profesional ha sido agregado.");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
+
+    axios.post('https://cire-backend.onrender.com/professional/', {
+      name,
+      age,
+      numberid,
+      occupation,
+      phone,
+      email,
+      password,
+    }).then(response => {
+      setProfessionals([...professionals, response.data.body]);
+      setName("");
+      setAge("");
+      setOccupation("");
+      setNumberId("");
+      setPhone("");
+      setEmail("");
+      setPassword("");
+        swal({title: "El estudiante se agregó correctamente"})
+    }).catch(error => {
+        alert(error);
+    });
+}
+
 
   return (
     <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
@@ -123,8 +89,8 @@ function AddProfessional({ setOpenModal }) {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={profession}
-                  onChange={(e) => setProfession(e.target.value)}
+                  value={occupation}
+                  onChange={(e) => setOccupation(e.target.value)}
                 />
               </label>
 
@@ -145,8 +111,8 @@ function AddProfessional({ setOpenModal }) {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={numbercell}
-                  onChange={(e) => setNumberCellphone(e.target.value)}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </label>
 
@@ -156,8 +122,8 @@ function AddProfessional({ setOpenModal }) {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={mail}
-                  onChange={(e) => setMail(e.target.value)}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
 
@@ -167,8 +133,8 @@ function AddProfessional({ setOpenModal }) {
                   type="text"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={pasword}
-                  onChange={(e) => setPasword(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
 
@@ -176,7 +142,7 @@ function AddProfessional({ setOpenModal }) {
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center"
                 type="submit"
               >
-                {selectedVolunteer ? "Save changes" : "Agregar estudiante"}
+                {selectedVolunteer ? "Save changes" : "Agregar profesional"}
               </button>
               <button
                 className="bg-red-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center"
