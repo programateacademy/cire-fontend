@@ -1,19 +1,18 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Link, useParams} from 'react-router-dom';
 
-export const EditStudent = () => {
-    const {id} = useParams();
+
+export const EditStudent = ({ setOpenModalEdit, studentId }) => {
+    
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
     const [namAttendant, setNamAttendant] = useState('');
     const [sex, setSex] = useState('');
     const [numAttendant, setNumAttendant] = useState('');
-   
+    
 
     useEffect(() => {
-        if (id) {
-            axios.get(`https://cire-backend.onrender.com/kid/${id}`).then((res) => {
+            axios.get(`https://cire-backend.onrender.com/kid/${studentId}`).then((res) => {
                 const student = res.data.body;
                 setName(student.name);
                 setAge(student.age);
@@ -26,8 +25,7 @@ export const EditStudent = () => {
             });
 
             
-        }
-    }, []);
+        }, []);
 
 
 
@@ -40,7 +38,7 @@ export const EditStudent = () => {
             numAttendant: numAttendant
         };
 
-        axios.put(`https://cire-backend.onrender.com/kid/${id}`, editstudents).then((res) => {
+        axios.put(`https://cire-backend.onrender.com/kid/${studentId}`, editstudents).then((res) => {
             console.log(res.data.body);
             alert(res.data.body);
         }).catch((error) => {
@@ -51,9 +49,17 @@ export const EditStudent = () => {
 
 
     return (
-        <div className='bg-indigo-100 w-screen'>
-            <div className='max-w-2xl mx-auto p-16'>
-                <div className='grid gap-6 mb-6 lg:grid-cols-1'>
+        <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+        <div className="bg-indigo-100">
+          <div className="p-20">
+            <div className="grid gap-6 mb-6 lg:grid-cols-1">
+            <button
+              className="text-dark"
+              onClick={() => setOpenModalEdit(false)}
+            >
+              X
+            </button>
+            <form >
                     <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                         Nombre completo:
                         <input type="text" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -94,6 +100,8 @@ export const EditStudent = () => {
                             <option value="Femenino">Femenino</option>
                         </select>
                     </label>
+                
+
 
                     <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                         Télefono del representante:
@@ -103,6 +111,7 @@ export const EditStudent = () => {
                                 (e) => setNumAttendant(e.target.value)
                             }/>
                     </label>
+                    </form>
 
                 </div>
 
@@ -110,15 +119,17 @@ export const EditStudent = () => {
                     <button className='bg-lime-700 hover:bg-lime-600 text-white font-bold py-2 px-12 rounded justify-items-center'
                         onClick={editStudents}>Enviar</button>
 
-                    <Link to={'/list5years'}>
-                        <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center'>Regresar</button>
-                    </Link>
+                    
+                        <button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-11 rounded justify-items-center'  onClick={() => setOpenModalEdit(false)}>Regresar</button>
+                    
                 </div>
 
 
             </div>
+            
 
 
+        </div>
         </div>
 
 
