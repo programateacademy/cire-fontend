@@ -9,7 +9,7 @@ export const EditStudent = () => {
     const [namAttendant, setNamAttendant] = useState('');
     const [sex, setSex] = useState('');
     const [numAttendant, setNumAttendant] = useState('');
-    const params = useParams()
+   
 
     useEffect(() => {
         if (id) {
