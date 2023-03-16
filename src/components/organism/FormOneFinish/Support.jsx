@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useEffect, useCallback } from "react";
-
+import axios from 'axios';
 
 const Support = ({ formData, setFormData, page, setPage, x, setX, onSaveFormData }) => {
+
   const handleSaveData = (event) => {
     event.preventDefault();
     onSaveFormData(formData); // Llamar a la función pasada como prop
@@ -19,6 +20,24 @@ const Support = ({ formData, setFormData, page, setPage, x, setX, onSaveFormData
       setFormData(JSON.parse(savedData));
     }
   }, [setFormData]);
+
+  useEffect(() => {
+    axios.get('https://cire-backend.onrender.com/principalForm')
+        .then(response => {
+            const coexistenceData = response.data.coexistence;
+                    setFormData((formData) => ({
+                        ...formData,
+                        descriptionSeven: coexistenceData?.familySupport?.description || '',
+                        actionSeven: coexistenceData?.familySupport?.actionPlan || '',
+                        descriptionEight: coexistenceData?.companionship?.description || '',
+                        actionEight: coexistenceData?.companionship?.actionPlan || '',
+                    }));
+          })
+          .catch(error => {
+            console.log('There was an error!', error);
+           });
+    }, []);
+    
 
   return (
     <motion.div
@@ -45,25 +64,6 @@ const Support = ({ formData, setFormData, page, setPage, x, setX, onSaveFormData
         value={formData.actionSeven}
         onChange={(e) =>
           setFormData({ ...formData, actionSeven: e.target.value })
-        }
-      />
-      <label>Acompañamiento</label>
-      <label>Descripción</label>
-      <input
-        type="text"
-        placeholder="About"
-        value={formData.descriptionEight}
-        onChange={(e) =>
-          setFormData({ ...formData, descriptionEight: e.target.value })
-        }
-      />
-      <label>Plan de acción</label>
-      <input
-        type="text"
-        placeholder="Escribe un plan de acción"
-        value={formData.actionEight}
-        onChange={(e) =>
-          setFormData({ ...formData, actionEight: e.target.value })
         }
       />
       <br />

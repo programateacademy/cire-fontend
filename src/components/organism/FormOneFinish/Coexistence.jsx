@@ -1,6 +1,7 @@
 
   import { motion } from "framer-motion";
   import { useEffect, useState } from 'react';
+  import axios from 'axios'
   
   const Coexistence = ({ formData, setFormData, page, setPage, x, setX,saveFormData }) => {
     const [stateFromLocalStorage, setStateFromLocalStorage] = useState(null);
@@ -12,6 +13,8 @@
         setFormData(previousState);
         setStateFromLocalStorage(previousState);
       }
+
+      fetchData()
     }, []);
      
     // useEffect to save state changes made by user
@@ -19,6 +22,23 @@
       localStorage.setItem('coexistence-page-state', JSON.stringify(formData));
     }, [formData]);
 
+    useEffect(() => {
+      axios
+        .get('https://cire-backend.onrender.com/principalForm')
+        .then((response) => {
+          const coexistenceData = response.data.coexistence;
+          setFormData((formData) => ({
+            ...formData,
+            descriptionFour: coexistenceData?.schoolBehavior?.description || '',
+            actionFour: coexistenceData?.schoolBehavior?.actionPlan || '',
+            descriptionFive: coexistenceData?.homeBehavior?.description || '',
+            actionFive: coexistenceData?.homeBehavior?.actionPlan || '',
+            descriptionSix: coexistenceData?.relationships?.description || '',
+            actionSix: coexistenceData?.relationships?.actionPlan || '',
+          }));
+        });
+    }, [setFormData]);
+    
   
   return (
     <motion.div
@@ -100,4 +120,4 @@
   );
 };
 
-export default Coexistence
+export default Coexistence;
