@@ -6,7 +6,7 @@ export default function LoginProfe() {
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
             <div>
                 <h2 className='ml-10 mt-5 text-4x1 font-bold dark:text-white mt-15 '> ¡Hola! <br/> Bienvenido de nuevo.</h2>
-                <img className='w-full h-full object-cover mr-2' src={login} alt="" />
+                <img className='w-50 h-50 object-cover mr-2' src={login} alt="" />
             </div>
             <div className='bg-blue-900 flex flex-col justify-center'>
                 <form className='max-w-{400px} w-full mx-auto bg-blue-900 p-8 px-8 rounded-lg'>
