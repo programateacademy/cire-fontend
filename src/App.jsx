@@ -26,7 +26,7 @@ function App() {
 		
 	 <BrowserRouter>
 		 <Routes>
-			<Route path='/' element={<FormV2/>}></Route>
+			<Route path='/' element={<AddInfo/>}></Route>
 			<Route path='/addinfo' element={<AddInfo/>}></Route>
 		 <Route path="/editInfo/:id" element={<EditInfo/>} exact></Route>
 
