@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function AddStudent() {
-  const [students, setStudents] = useState([]);
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [representative, setRepresentative] = useState('');
-  const [gender, setGender] = useState('');
-  const [numberCellphone, setNumberCellphone] = useState('');
-  const [selectedChild, setSelectedChild] = useState(null);
+function AddInfo() {
+  const [schoolDescription, setschoolDescription] = useState('');
+  const [schoolAction, setschoolAction] = useState('');
+  const [behaviorDescription, setBehaviorDescription] = useState('');
+  const [behaviorAction, setBehaviorAction] = useState('');
+  const [relationDescription, setRelationDescription] = useState('');
+  const [relationACtion, setRelationACtion] = useState('');
+  const [workClassDescription, setWorkClassDescription] = useState('');
+  const [workClassAction, setWorkClassAction] = useState('');
+  const [workCireDescription, setWorkCireDescription] = useState('');
+  const [workCireAction, setWorkCireAction] = useState('');
+  const [workHomeDescription, setWorkHomeDescription] = useState('');
+  const [parentDescription, setParentDescription] = useState('');
+  const [parentAction, setParentAction] = useState('');
+  const [accompanimentDescription, setAccompanimentDescription] = useState('');
+  const [accompanimentAction, setAccompanimentAction] = useState('');
+
 
   useEffect(() => {
-    axios.get('http://localhost:3001/students')
+    axios.get('https://cire-backend.onrender.com/principalForm')
       .then(response => {
-        setStudents(response.data);
+        setInfo(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -22,36 +31,63 @@ function AddStudent() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedChild) {
-      axios.put(`http://localhost:3001/students/${selectedChild.id}`, { name, age, year, gender, representative, numberCellphone  })
+    if (selectedInfo) {
+      axios.put(`https://cire-backend.onrender.com/principalForm${selectedInfo._id}`, { 
+        schoolDescription, schoolAction, behaviorDescription, behaviorAction, relationDescription, relationACtion,
+        workClassDescription,workClassAction, workCireDescription, workCireAction, workHomeDescription, parentDescription, parentAction,
+        accompanimentDescription, accompanimentAction })
         .then(response => {
-          const updatedStudent = students.map(student => {
-            if (student.id === response.data.id) {
+          const updatedInfo = formOne.map(formOnee => {
+            if (formOnee .id === response.data.body) {
               return response.data;
             }
-            return student;
+            return formOnee;
           });
-          setStudents(updatedStudent);
-          setSelectedChild(null);
-          setName('');
-          setAge('');
+          setschoolDescription(updatedInfo);
+          setschoolAction('');
+          setBehaviorDescription('');
+          setBehaviorAction('');
           setRepresentative('');
-          setGender('');
-          setNumberCellphone('');
+          setRelationDescription('');
+          setWorkClassAction('');
+          setWorkClassDescription('');
+          setWorkCireDescription('');
+          setWorkCireAction('');
+          setWorkHomeDescription('');
+          setParentDescription('');
+          setRepresentative('');
+          setRelationDescription('');
+          setParentAction('');
+          setAccompanimentDescription('');
+          setAccompanimentAction('');
+
 
         })
         .catch(error => {
           console.log(error);
         });
     } else {
-      axios.post('http://localhost:3001/students', { name, age, gender, representative, numberCellphone })
+      axios.post('https://cire-backend.onrender.com/principalForm', { schoolDescription, schoolAction, behaviorDescription, behaviorAction, relationDescription, relationACtion,
+      workClassDescription,workClassAction, workCireDescription, workCireAction, workHomeDescription, parentDescription, parentAction,
+      accompanimentDescription, accompanimentAction })
         .then(response => {
-          setStudents([...students, response.data]);
-          setName('');
-          setAge('');
+          setschoolDescription([...students, response.data.body]);
+          setschoolAction('');
+          setBehaviorDescription('');
+          setBehaviorAction('');
           setRepresentative('');
-          setGender('');
-          setNumberCellphone('');
+          setRelationDescription('');
+          setWorkClassAction('');
+          setWorkClassDescription('');
+          setWorkCireDescription('');
+          setWorkCireAction('');
+          setWorkHomeDescription('');
+          setParentDescription('');
+          setRepresentative('');
+          setRelationDescription('');
+          setParentAction('');
+          setAccompanimentDescription('');
+          setAccompanimentAction('');
         })
         .catch(error => {
           console.log(error);
@@ -59,23 +95,26 @@ function AddStudent() {
     }
   };
 
-  const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/students/${id}`)
-      .then(response => {
-        setStudents(students.filter(student => student.id !== id));
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
 
-  const handleEdit = (student) => {
-    setSelectedChild(student);
-    setName(student.name);
-    setAge(student.age);
-    setRepresentative(student.representative);
-    setGender(student.gender);
-    setNumberCellphone(student.number);
+  const handleEdit = (formOnee) => {
+
+    setschoolDescription(formOnee.schoolDescription);
+    setschoolAction(formOnee.schoolAction);
+          setBehaviorDescription(formOnee.behaviorDescription);
+          setBehaviorAction(formOnee.behaviorAction);
+          setRepresentative(formOnee.behaviorDescription);
+          setRelationDescription(formOnee.relationDescription);
+          setWorkClassAction(formOnee.workClassDescription);
+          setWorkClassDescription(formOnee.workClassAction);
+          setWorkCireDescription(formOnee.workCireDescription);
+          setWorkCireAction(formOnee.workCireAction);
+          setWorkHomeDescription(formOnee.workHomeDescription);
+          setParentDescription(formOnee.workHomeAction);
+          setParentAction(formOnee.parentAction);
+          setAccompanimentDescription(formOnee.accompanimentDescription);
+          setAccompanimentAction(formOnee.accompanimentAction);
+   
+    
   };
 
   return (
