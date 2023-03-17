@@ -13,9 +13,10 @@ import Coexistence from "./components/organism/FormOneFinish/Coexistence";
 import Support from "./components/organism/FormOneFinish/Support";
 // import Pagination from "./components/organism/FormFourFinish/Pagination";
 // import Pagination from "./components/organism/FormThreeFinish/Pagination";
-import Pagination from "./components/organism/FormOneFinish/Pagination";
+// import Pagination from "./components/organism/FormOneFinish/Pagination";
 // import Pagination from "./components/organism/FormTwoFinish/Pagination";
-import Scale from './components/organism/FormSixFinish/Scale'
+// import Scale from './components/organism/FormSixFinish/Scale'
+import ScaleV2 from "./components/organism/FormSixFinish/ScaleV2"
 function App() {
 	
 	return (
@@ -35,11 +36,11 @@ function App() {
 		 </Routes>
 		 </BrowserRouter> */}
 		{/* <FormExampleV2 /> */}
-		<Pagination />
 		{/* <Pagination /> */}
 		{/* <Pagination /> */}
 		{/* <Pagination /> */}
-		{/* <Scale /> */}
+		{/* <Pagination /> */}
+		<ScaleV2 />
 		
 		</>
 	)

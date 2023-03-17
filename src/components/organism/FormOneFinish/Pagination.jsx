@@ -1,32 +1,10 @@
-import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import Academic from "./Academic";
 import Coexistence from "./Coexistence";
 import Support from "./Support";
 
 function Pagination() {
   const [formData, setFormData] = useState({});
-
-  const handleSaveFormData = (data) => {
-    setFormData(data);
-  };
-
-  const saveFormData = useCallback(() => {
-    if (Object.keys(formData).length > 0) {
-      localStorage.setItem("academicFormData", JSON.stringify(formData));
-    }
-  }, [formData]);
-
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("academicFormData"));
-    if (savedData) {
-      setFormData(savedData);
-    }
-  }, []);
-
-  useEffect(() => {
-    saveFormData();
-  }, [formData, saveFormData]);
 
   const [page, setPage] = useState(0);
 
@@ -56,7 +34,7 @@ function Pagination() {
       setPage={setPage}
       x={x}
       setX={setX}
-      onSaveFormData={handleSaveFormData}
+      onSaveFormData={(data) => setFormData(data)}
     />,
   ];
 
