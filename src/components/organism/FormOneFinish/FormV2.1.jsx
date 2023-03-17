@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function AddInfo() {
+function PostInfo() {
   const [schoolDescription, setschoolDescription] = useState("");
   const [schoolAction, setschoolAction] = useState("");
   const [behaviorDescription, setBehaviorDescription] = useState("");
@@ -35,119 +35,67 @@ function AddInfo() {
     event.preventDefault();
     if (selectedInfo) {
       axios
-        .put(
-          `https://cire-backend.onrender.com/principalForm/${selectedInfo._id}`,
-          {
-            schoolDescription,
-            schoolAction,
-            behaviorDescription,
-            behaviorAction,
-            relationDescription,
-            relationACtion,
-            workClassDescription,
-            workClassAction,
-            workCireDescription,
-            workCireAction,
-            workHomeDescription,
-            workHomeAction,
-            parentDescription,
-            parentAction,
-            accompanimentDescription,
-            accompanimentAction,
-          }
-        )
+        .post("https://cire-backend.onrender.com/principalForm/", {
+          schoolDescription,
+          schoolAction,
+          behaviorDescription,
+          behaviorAction,
+          relationDescription,
+          relationACtion,
+          workClassDescription,
+          workClassAction,
+          workCireDescription,
+          workCireAction,
+          workHomeDescription,
+          workHomeAction,
+          parentDescription,
+          parentAction,
+          accompanimentDescription,
+          accompanimentAction,
+        })
         .then((response) => {
-          if (selectedInfo) {
-            const updatedInfo = selectedInfo.map((formOnee) => {
-              if (formOnee.id === response.data.body._id) {
-                return response.data.body;
-              }
-              return formOnee;
-            });
-            setSelectedInfo(updatedInfo);
-            setschoolDescription("");
-            setschoolAction("");
-            setBehaviorDescription("");
-            setBehaviorAction("");
-            setRelationDescription("");
-            setRelationACtion("");
-            setWorkClassDescription("");
-            setWorkClassAction("");
-            setWorkCireDescription("");
-            setWorkCireAction("");
-            setWorkHomeDescription("");
-            setWorkHomeAction("");
-            setParentDescription("");
-            setParentAction("");
-            setAccompanimentDescription("");
-            setAccompanimentAction("");
-          } else {
-            axios
-              .post("https://cire-backend.onrender.com/principalForm/", {
-                schoolDescription,
-                schoolAction,
-                behaviorDescription,
-                behaviorAction,
-                relationDescription,
-                relationACtion,
-                workClassDescription,
-                workClassAction,
-                workCireDescription,
-                workCireAction,
-                workHomeDescription,
-                workHomeAction,
-                parentDescription,
-                parentAction,
-                accompanimentDescription,
-                accompanimentAction,
-              })
-              .then((response) => {
-                setSelectedInfo(response.data.body);
-                setschoolDescription("");
-                setschoolAction("");
-                setBehaviorDescription("");
-                setBehaviorAction("");
-                setRelationDescription("");
-                setRelationAction("");
-                setWorkClassDescription("");
-                setWorkClassAction("");
-                setWorkCireDescription("");
-                setWorkCireAction("");
-                setWorkHomeDescription("");
-                setWorkHomeAction("");
-                setParentDescription("");
-                setParentAction("");
-                setAccompanimentDescription("");
-                setAccompanimentAction("");
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }
+          setSelectedInfo(response.data.body);
+          setschoolDescription("");
+          setschoolAction("");
+          setBehaviorDescription("");
+          setBehaviorAction("");
+          setRelationDescription("");
+          setRelationACtion("");
+          setWorkClassDescription("");
+          setWorkClassAction("");
+          setWorkCireDescription("");
+          setWorkCireAction("");
+          setWorkHomeDescription("");
+          setWorkHomeAction("");
+          setParentDescription("");
+          setParentAction("");
+          setAccompanimentDescription("");
+          setAccompanimentAction("");
         })
         .catch((error) => {
           console.log(error);
         });
-      }
     }
-  const handleEdit = (formOnee) => {
-    setschoolDescription(formOnee.schoolDescription);
-    setschoolAction(formOnee.schoolAction);
-    setBehaviorDescription(formOnee.behaviorDescription);
-    setBehaviorAction(formOnee.behaviorAction);
-    setRelationACtion(formOnee.relationACtion);
-    setRelationDescription(formOnee.relationDescription);
-    setWorkClassAction(formOnee.workClassAction);
-    setWorkClassDescription(formOnee.workClassDescription);
-    setWorkCireDescription(formOnee.workCireDescription);
-    setWorkCireAction(formOnee.workCireAction);
-    setWorkHomeDescription(formOnee.workHomeDescription);
-    setWorkHomeAction(formOnee.workHomeAction);
-    setParentDescription(formOnee.parentDescription);
-    setParentAction(formOnee.parentAction);
-    setAccompanimentDescription(formOnee.accompanimentDescription);
-    setAccompanimentAction(formOnee.accompanimentAction);
   };
+    
+//   const handleEdit = (formOnee) => {
+//     setschoolDescription(formOnee.schoolDescription);
+//     setschoolAction(formOnee.schoolAction);
+//     setBehaviorDescription(formOnee.behaviorDescription);
+//     setBehaviorAction(formOnee.behaviorAction);
+//     setRelationACtion(formOnee.relationACtion);
+//     setRelationDescription(formOnee.relationDescription);
+//     setWorkClassAction(formOnee.workClassAction);
+//     setWorkClassDescription(formOnee.workClassDescription);
+//     setWorkCireDescription(formOnee.workCireDescription);
+//     setWorkCireAction(formOnee.workCireAction);
+//     setWorkHomeDescription(formOnee.workHomeDescription);
+//     setWorkHomeAction(formOnee.workHomeAction);
+//     setParentDescription(formOnee.parentDescription);
+//     setParentAction(formOnee.parentAction);
+//     setAccompanimentDescription(formOnee.accompanimentDescription);
+//     setAccompanimentAction(formOnee.accompanimentAction);
+//   };
 
   return (
     <div>
@@ -288,17 +236,20 @@ function AddInfo() {
           />
         </label>
 
-        <button type="submit">
+        <button type="submit" onClick={handleSubmit}>Enviar</button>
+
+
+        {/* <button type="submit">
           {selectedInfo ? "Save changes" : "Add iformation"}
         </button>
         {selectedInfo && (
           <button type="button" onClick={() => setSelectedInfo(null)}>
             Cancel
           </button>
-        )}
+        )} */}
       </form>
     </div>
   );
 }
 
-export default AddInfo;
+export default PostInfo;
