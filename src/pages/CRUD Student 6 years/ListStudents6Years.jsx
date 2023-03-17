@@ -1,18 +1,18 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
-import AddStudent from './AddStudent';
-import { EditStudent } from './EditStudent';
+import AddStudent6Years from './AddStudent6Years';
+import EditStudent6Years from './EditStudent6Years';
 import swal from 'sweetalert'
 
-export const ListStudents = () => {
+export const ListStudents6Years = () => {
 
     const [students, setStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
-        axios.get('https://cire-backend.onrender.com/kid?age=5').then(response => {
+        axios.get('https://cire-backend.onrender.com/kid?age=6').then(response => {
             setStudents(response.data.body);
         }).catch(error => {
             console.log(error);
@@ -104,7 +104,7 @@ export const ListStudents = () => {
                 Agregar nuevo estudiante</button>
 
             {
-            openModal && <AddStudent setOpenModal={setOpenModal}
+            openModal && <AddStudent6Years setOpenModal={setOpenModal}
                 closeModal={closeModal}/>
         }
 
@@ -154,7 +154,7 @@ export const ListStudents = () => {
                                         () => handleDelete(student._id)
                                 }>Delete</button>
                                   {openModalEdit && (
-                  <EditStudent
+                  <EditStudent6Years
                     studentId={selectedStudent}
                     setOpenModalEdit={setOpenModalEdit}
                     closeModalEdit={closeModalEdit}
@@ -182,3 +182,4 @@ export const ListStudents = () => {
         </div>
     )
 }
+export default ListStudents6Years;

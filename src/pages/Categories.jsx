@@ -19,14 +19,14 @@ export const Categories = () => {
   </div>
 
   <div>
-    <button>
-    <img src={sieteaños} alt="" />
+    <button> <a href='/list7years'>
+    <img src={sieteaños} alt="" /></a>
     </button>
   </div>
 
   <div>
-    <button>
-    <img  src={seisaños} alt="" />
+    <button> <a href='/list6years'>
+    <img  src={seisaños} alt="" /></a>
     </button>
   </div>
 
