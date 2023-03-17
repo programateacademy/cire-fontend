@@ -5,7 +5,7 @@ export default function LoginProfe() {
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
             <div>
-                <h2 className='ml-10 mt-5 text-4xl font-bold dark:text-white mt-15'> ¡Hola! <br/> Bienvenido de nuevo.</h2>
+                <h2 className='ml-10 mt-5 text-4x1 font-bold dark:text-white mt-15 '> ¡Hola! <br/> Bienvenido de nuevo.</h2>
                 <img className='w-50 h-50 object-cover mr-2' src={login} alt="" />
             </div>
             <div className='bg-blue-900 flex flex-col justify-center'>

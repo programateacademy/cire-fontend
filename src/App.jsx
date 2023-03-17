@@ -10,7 +10,7 @@ import { ListProfessionals } from "./pages/CRUD professional/ListProfessionals";
 import { EditProfessional } from "./pages/CRUD professional/EditProfessional";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import LoginProfe from "./pages/login/LoginProfe";
-
+import ChangePassword from "./pages/login/ChangePassword";
 
 
 function App() {
@@ -18,12 +18,12 @@ function App() {
 	return (
 		<>
 		
-		 <BrowserRouter>
-		 
-		 <Routes>
+		<BrowserRouter>
+		<Routes>
 			<Route path='/' element={<ListStudents/>}></Route>
 			<Route path='/categories' element={<Categories/>}></Route>
 			<Route path='/loginAdmin' element={<LoginAdmin/>}></Route>
+			<Route path='/changePassword' element={<ChangePassword/>}></Route>
 			<Route path='/loginProfe' element={<LoginProfe/>}></Route>
 			<Route path='/addstudent' element={<AddStudent/>}></Route>
 			<Route path="/editstudents/:id" element={<EditStudent/>} exact></Route>
@@ -31,14 +31,11 @@ function App() {
 			<Route path='/addprofessional' element={<AddProfessional/>}></Route>
 			<Route path='/listprofessional' element={<ListProfessionals/>}></Route>
 			<Route path="/editprofessional/:id" element={<EditProfessional/>} exact></Route>
-			
-
-		 </Routes>
-		 
-		 </BrowserRouter>
+		</Routes>
+		</BrowserRouter>
 
 		</>
 	);
 }
 
-export default App;
+export default App

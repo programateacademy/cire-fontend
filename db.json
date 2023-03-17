@@ -1,6 +1,7 @@
 {
-  "students": [
+  "users": [
     {
+<<<<<<< HEAD
       "name": "Fabián Ruiz",
       "age": "5",
       "gender": "Masculino",
@@ -64,6 +65,18 @@
       "gender": "Mujer",
       "numberCellphone": "123123123",
       "id": "2"
+=======
+      "id": 1,
+      "email": "usuario1@gmail.com",
+      "password": "contraseña1",
+      "locked": false
+    },
+    {
+      "id": 2,
+      "email": "usuario2@gmail.com",
+      "password": "contraseña2",
+      "locked": true
+>>>>>>> 16e016930f6efbd14e2b1017ae6bd0241ffc2134
     }
   ],
   "professionals": [
