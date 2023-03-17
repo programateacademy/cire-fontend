@@ -16,31 +16,23 @@ import Support from "./components/organism/FormOneFinish/Support";
 // import Pagination from "./components/organism/FormOneFinish/Pagination";
 // import Pagination from "./components/organism/FormTwoFinish/Pagination";
 // import Scale from './components/organism/FormSixFinish/Scale'
-import ScaleV2 from "./components/organism/FormSixFinish/ScaleV2"
+import FormV2 from "./components/organism/FormOneFinish/FormV2"
+import { EditInfo } from "./components/organism/FormOneFinish/EditV2"
+import AddInfo from "./components/organism/FormOneFinish/FormV2";
 function App() {
 	
 	return (
 		<>
-		{/* <h1 className="text-green-500">Hola</h1> */}
-		 {/* <FormStudentOne />  */}
-		 {/* <FormValidation /> */}
-		{/* <FormExample /> 
-		{/* <FormExampleV2/> */}
-		{/* <BrowserRouter>
+		
+	 <BrowserRouter>
 		 <Routes>
-			<Route path='/' element={<FormExampleV2/>}></Route>
-			<Route path='/formstudentparttwo' element={<FormStudentPartTwo/>}></Route>
-			<Route path='/formstudentpartthree' element={<FormStudentPartThree/>}></Route>
-		 <Route path="/editForm/:id" element={<EditForm/>} exact></Route>
+			<Route path='/' element={<FormV2/>}></Route>
+			<Route path='/addinfo' element={<AddInfo/>}></Route>
+		 <Route path="/editInfo/:id" element={<EditInfo/>} exact></Route>
 
 		 </Routes>
-		 </BrowserRouter> */}
-		{/* <FormExampleV2 /> */}
-		{/* <Pagination /> */}
-		{/* <Pagination /> */}
-		{/* <Pagination /> */}
-		{/* <Pagination /> */}
-		<ScaleV2 />
+		 </BrowserRouter> 
+		{/* <FormV2 /> */}
 		
 		</>
 	)
