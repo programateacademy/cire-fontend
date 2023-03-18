@@ -20,68 +20,8 @@ function AddInfo() {
   const [accompanimentAction, setAccompanimentAction] = useState("");
   const [selectedInfo, setSelectedInfo] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("https://cire-backend.onrender.com/principalForm/")
-      .then((response) => {
-        setSelectedInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (selectedInfo) {
-      axios
-        .put(
-          `https://cire-backend.onrender.com/principalForm/${selectedInfo._id}`,
-          {
-            schoolDescription,
-            schoolAction,
-            behaviorDescription,
-            behaviorAction,
-            relationDescription,
-            relationACtion,
-            workClassDescription,
-            workClassAction,
-            workCireDescription,
-            workCireAction,
-            workHomeDescription,
-            workHomeAction,
-            parentDescription,
-            parentAction,
-            accompanimentDescription,
-            accompanimentAction,
-          }
-        )
-        .then((response) => {
-          if (selectedInfo) {
-            const updatedInfo = selectedInfo.map((formOnee) => {
-              if (formOnee.id === response.data.body._id) {
-                return response.data.body;
-              }
-              return formOnee;
-            });
-            setSelectedInfo(updatedInfo);
-            setschoolDescription("");
-            setschoolAction("");
-            setBehaviorDescription("");
-            setBehaviorAction("");
-            setRelationDescription("");
-            setRelationACtion("");
-            setWorkClassDescription("");
-            setWorkClassAction("");
-            setWorkCireDescription("");
-            setWorkCireAction("");
-            setWorkHomeDescription("");
-            setWorkHomeAction("");
-            setParentDescription("");
-            setParentAction("");
-            setAccompanimentDescription("");
-            setAccompanimentAction("");
-          } else {
             axios
               .post("https://cire-backend.onrender.com/principalForm/", {
                 schoolDescription,
@@ -108,7 +48,7 @@ function AddInfo() {
                 setBehaviorDescription("");
                 setBehaviorAction("");
                 setRelationDescription("");
-                setRelationAction("");
+                setRelationACtion("");
                 setWorkClassDescription("");
                 setWorkClassAction("");
                 setWorkCireDescription("");
@@ -124,31 +64,7 @@ function AddInfo() {
                 console.log(error);
               });
           }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-    }
-  const handleEdit = (formOnee) => {
-    setschoolDescription(formOnee.schoolDescription);
-    setschoolAction(formOnee.schoolAction);
-    setBehaviorDescription(formOnee.behaviorDescription);
-    setBehaviorAction(formOnee.behaviorAction);
-    setRelationACtion(formOnee.relationACtion);
-    setRelationDescription(formOnee.relationDescription);
-    setWorkClassAction(formOnee.workClassAction);
-    setWorkClassDescription(formOnee.workClassDescription);
-    setWorkCireDescription(formOnee.workCireDescription);
-    setWorkCireAction(formOnee.workCireAction);
-    setWorkHomeDescription(formOnee.workHomeDescription);
-    setWorkHomeAction(formOnee.workHomeAction);
-    setParentDescription(formOnee.parentDescription);
-    setParentAction(formOnee.parentAction);
-    setAccompanimentDescription(formOnee.accompanimentDescription);
-    setAccompanimentAction(formOnee.accompanimentAction);
-  };
-
+        
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -156,6 +72,7 @@ function AddInfo() {
         Escribe una descripción
           <input
             type="text"
+            name="schoolDescription"
             value={schoolDescription}
             onChange={(e) => setschoolDescription(e.target.value)}
           />
@@ -164,6 +81,7 @@ function AddInfo() {
         Escribe el plan
           <input
             type="text"
+            name="schoolAction"
             value={schoolAction}
             onChange={(e) => setschoolAction(e.target.value)}
           />
