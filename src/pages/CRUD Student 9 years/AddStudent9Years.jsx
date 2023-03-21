@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 
-function AddStudent6Years ({setOpenModal}) {
+function AddStudent9Years ({setOpenModal}) {
     const [students, setStudents] = useState([]);
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -13,7 +13,7 @@ function AddStudent6Years ({setOpenModal}) {
 
 
     useEffect(() => {
-        axios.get('https://cire-backend.onrender.com/kid?age=5').then(response => {
+        axios.get('https://cire-backend.onrender.com/kid?age=9').then(response => {
             setStudents(response.data);
         }).catch(error => {
             console.log(error);
@@ -121,4 +121,4 @@ function AddStudent6Years ({setOpenModal}) {
     );
 }
 
-export default AddStudent6Years;
+export default AddStudent9Years;

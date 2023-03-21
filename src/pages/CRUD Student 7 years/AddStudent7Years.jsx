@@ -18,7 +18,7 @@ function AddStudent6Years ({setOpenModal}) {
         }).catch(error => {
             console.log(error);
         });
-    }, []);
+    }, [students]);
 
 
     const handleSubmit = (event) => {

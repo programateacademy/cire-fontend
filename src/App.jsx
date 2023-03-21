@@ -6,10 +6,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import { EditStudent } from "./pages/CRUD Student 5 years/EditStudent";
 import {ListStudents6Years} from "./pages/CRUD Student 6 years/ListStudents6Years"
 import Navbar from "./components/organism/Navbar";
-import  Pagination  from "./components/organism/FormOneFinish/Pagination";
-import  Scale  from "./components/organism/FormSixFinish/Scale";
 import {ListStudents7Years} from "./pages/CRUD Student 7 years/ListStudents7Years"
-
+import {ListStudents8Years} from "./pages/CRUD Student 8 years/ListStudents8Years"
+import {ListStudents9Years} from "./pages/CRUD Student 9 years/ListStudents9Years"
 
 function App() {
 	
@@ -24,10 +23,9 @@ function App() {
 			<Route path='/list5years' element={<ListStudents/>}></Route>
 			<Route path='/list6years' element={<ListStudents6Years/>}></Route>
 			<Route path='/list7years' element={<ListStudents7Years/>}></Route>
-			<Route path="/editstudents/:id" element={<EditStudent />} exact></Route>
-			<Route path="pagination5years" element={<Pagination />} exact></Route> 
-			<Route path="pagination5.2years" element={<Scale />} exact></Route> 
-			
+			<Route path='/list8years' element={<ListStudents8Years/>}></Route>
+			<Route path='/list9years' element={<ListStudents9Years/>}></Route>
+			<Route path="/editstudents/:id" element={<EditStudent />} exact></Route>	
 		 </Routes>
 		 </BrowserRouter>
 	

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2'
 
 
-function AddStudent6Years ({setOpenModal}) {
+function AddStudent8Years ({setOpenModal}) {
     const [students, setStudents] = useState([]);
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -121,4 +121,4 @@ function AddStudent6Years ({setOpenModal}) {
     );
 }
 
-export default AddStudent6Years;
+export default AddStudent8Years;

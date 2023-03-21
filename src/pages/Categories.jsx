@@ -31,8 +31,8 @@ export const Categories = () => {
   </div>
 
   <div>
-    <button>
-    <img src={ochoaños} alt="" />
+    <button> <a href='/list8years'>
+    <img src={ochoaños} alt="" /></a>
     </button>
   </div>
 
@@ -40,8 +40,8 @@ export const Categories = () => {
 
 <div className='bg-indigo-100 grid grid-rows-1 grid-flow-col gap-2 mt-1 px-24 justify-center'>
 <div>
-    <button>
-    <img src={nueveteaños} alt="" />
+    <button> <a href='/list9years'>
+    <img src={nueveteaños} alt="" /></a>
     </button>
   </div>
 </div>

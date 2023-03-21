@@ -18,7 +18,7 @@ function AddStudent({setOpenModal}) {
         }).catch(error => {
             console.log(error);
         });
-    }, []);
+    }, [students]);
 
 
     const handleSubmit = (event) => {
