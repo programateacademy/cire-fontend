@@ -17,7 +17,7 @@ export const ListStudents6Years = () => {
         }).catch(error => {
             console.log(error);
         });
-    }, []);
+    }, [students]);
 
 
     const handleDelete = (id) => {
