@@ -78,25 +78,6 @@ function PostInfo() {
     }
   };
     
-//   const handleEdit = (formOnee) => {
-//     setschoolDescription(formOnee.schoolDescription);
-//     setschoolAction(formOnee.schoolAction);
-//     setBehaviorDescription(formOnee.behaviorDescription);
-//     setBehaviorAction(formOnee.behaviorAction);
-//     setRelationACtion(formOnee.relationACtion);
-//     setRelationDescription(formOnee.relationDescription);
-//     setWorkClassAction(formOnee.workClassAction);
-//     setWorkClassDescription(formOnee.workClassDescription);
-//     setWorkCireDescription(formOnee.workCireDescription);
-//     setWorkCireAction(formOnee.workCireAction);
-//     setWorkHomeDescription(formOnee.workHomeDescription);
-//     setWorkHomeAction(formOnee.workHomeAction);
-//     setParentDescription(formOnee.parentDescription);
-//     setParentAction(formOnee.parentAction);
-//     setAccompanimentDescription(formOnee.accompanimentDescription);
-//     setAccompanimentAction(formOnee.accompanimentAction);
-//   };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
