@@ -20,7 +20,7 @@ export const ListProfessionals = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [professionals]);
 
   const handleDelete = (id) => {
     swal({
