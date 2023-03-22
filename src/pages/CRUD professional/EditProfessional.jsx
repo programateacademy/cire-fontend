@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
   const [name, setName] = useState("");
@@ -39,17 +39,33 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
       password: password,
     };
 
-    axios
+    Swal.fire({
+      title: '¿Está seguro de que desea guardar los cambios?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
       .put(`https://cire-backend.onrender.com/professional/${professionalId}`, editprofessionals)
       .then((res) => {
         console.log(res.data.body);
-        alert(res.data.body);
+        Swal.fire({
+          title: 'Cambios guardados',
+          icon: 'success'
+        });
       })
       .catch((error) => {
         console.error('Error updating student:', error);
-        alert('Error updating student');
+        Swal.fire({
+          title: 'Error al actualizar al estudiante',
+          icon: 'error'
+        });
       });
   }
+});
+}
 
   return (
     <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
@@ -75,13 +91,11 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
               </label>
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Edad:
-                <input
-                  type="text"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                />
+                <input type="number" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value={age}
+                            onChange={
+                                (e) => setAge(e.target.value)
+                            }/>
               </label>
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Profesion:
@@ -97,7 +111,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Cédula de ciudadania:
                 <input
-                  type="text"
+                  type="number"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={numberid}
@@ -108,7 +122,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Télefono del Profesional:
                 <input
-                  type="text"
+                  type="number"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={phone}
@@ -130,7 +144,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Contraseña:
                 <input
-                  type="text"
+                  type="password"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={password}

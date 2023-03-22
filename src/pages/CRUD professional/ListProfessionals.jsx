@@ -115,7 +115,7 @@ export const ListProfessionals = () => {
                 Cuenta para ingreso a la plataforma
               </h2>
               <li>Correo: {professional.email}</li>
-              <li>Contraseña: {professional.password}</li>
+              <li>Contraseña: ****** </li>
               <div className="grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center">
                 <button
                   className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
