@@ -1,15 +1,14 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router-dom";
+import RoutesCIRE from "./RoutesCIRE"
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-         <Routes />
-        </Routes>
-      </BrowserRouter>
+<RoutesCIRE />
     </>
   );
 }
+
+
 export default App;
