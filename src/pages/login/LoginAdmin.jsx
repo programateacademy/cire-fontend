@@ -1,25 +1,53 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import admin from '../../assets/images/admin.jpg'
 import axios from 'axios'
+import Swal from "sweetalert2"
+
+const MAX_LOGIN_ATTEMPTS = 3;
 
 export default function LoginAdmin() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [isDisabled, setIsDisabled] = useState(false);
 
-    const handleLogin = async (event) => {
-        event.preventDefault()
+  const handleLogin = async (event) => {
+    event.preventDefault();
 
-        const response = await axios.post('/api/login', {
-            email: email,
-            password: password
-        })
+    try {
+      const response = await axios.get(
+        'https://cire-backend.onrender.com/superAdmin',
+        {
+          email: email,
+          password: password,
+        }
+      );
 
-        const token = response.data.token
-        // almacenar el token en el almacenamiento local o en la memoria para usarlo en futuras solicitudes
-
-        // redireccionar a la página de inicio después del inicio de sesión exitoso
+      const token = localStorage.getItem('token');
+      if (response.data.body === 'superAdmin') {
+        window.location.href = '/ListProfessionals';
+      } else {
+        throw new Error('No tiene acceso');
+      }
+    } catch (error) {
+      console.error(error);
+      setLoginAttempts(loginAttempts + 1);
+      if (loginAttempts >= MAX_LOGIN_ATTEMPTS - 1) {
+        setIsDisabled(true);
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: `Ha excedido el número máximo de intentos (${MAX_LOGIN_ATTEMPTS}). Inténtelo de nuevo más tarde.`,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: 'El correo o la contraseña son incorrectos',
+        });
+      }
     }
-
+  };
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
             <div>
@@ -40,7 +68,7 @@ export default function LoginAdmin() {
                         <p className='flex items-center'><input className='mr-2' type="checkbox" /> Remember Me </p>
                         <p> Forgot Password </p>
                     </div>
-                    <button className='rounded-lg w-full my-5 py-2 bg-lime-600 shadow-lg text-white' type="onclick"> Sing In </button>
+                    <button className='rounded-lg w-full my-5 py-2 bg-lime-600 shadow-lg text-white' type="submit"> Sing In </button>
                 </form>
             </div>
         </div>
