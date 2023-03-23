@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 function AddProfessional({ setOpenModal }) {
   const [professionals, setProfessionals] = useState([]);
@@ -36,7 +36,7 @@ function AddProfessional({ setOpenModal }) {
       email,
       password,
     }).then(response => {
-      setProfessionals([...professionals, response.data.body]);
+      setProfessionals([professionals, response.data.body]);
       setName("");
       setAge("");
       setOccupation("");
@@ -44,11 +44,19 @@ function AddProfessional({ setOpenModal }) {
       setPhone("");
       setEmail("");
       setPassword("");
-        swal({title: "El estudiante se agregó correctamente"})
+        Swal.fire({title: "El profesional se agregó correctamente",
+        icon: 'success'})
     }).catch(error => {
-        alert(error);
+      console.error('Error updating profesional:', error);
+                    Swal.fire({
+                      title: 'Error al actualizar al profesional',
+                      icon: 'error'
+                    });
+
     });
 }
+
+
 
 
   return (
@@ -74,13 +82,11 @@ function AddProfessional({ setOpenModal }) {
 
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Edad:
-                <input
-                  type="text"
-                  required
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                />
+                <input type="number" required className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    value={age}
+                                    onChange={
+                                        (e) => setAge(e.target.value)
+                                    }/>
               </label>
 
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
@@ -95,9 +101,10 @@ function AddProfessional({ setOpenModal }) {
               </label>
 
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
-                Cedula de ciudadania:
+                Numero de identificación:
                 <input
-                  type="text"
+                  type="number"
+                  placeholder="Introduce el numero de identificación"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={numberid}
@@ -108,7 +115,8 @@ function AddProfessional({ setOpenModal }) {
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Télefono del profesional:
                 <input
-                  type="text"
+                  type="number"
+                  placeholder="Introduce un número de 10 dígitos"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={phone}
@@ -120,17 +128,21 @@ function AddProfessional({ setOpenModal }) {
                 Correo:
                 <input
                   type="text"
-                  required
+                  placeholder="Introduce un @"
+                  required 
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  
+                  
                 />
               </label>
 
               <label className="block mb-2 text-sm font-bold text-gray-900 dark:text-gray-300">
                 Contraseña:
                 <input
-                  type="text"
+                  type="password"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={password}
