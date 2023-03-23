@@ -36,7 +36,7 @@ function RoutesCIRE() {
                     <Route path="/editstudents/:id"
                         element={<EditStudent/>}
                         exact></Route>
-                    <Route path="/addinfo"
+                    <Route path="/addinfo/:id"
                         element={<AddInfo/>}></Route>
                     <Route path="/editInfo/:id"
                         element={<EditInfo/>}

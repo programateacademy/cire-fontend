@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
 import AddStudent from './AddStudent';
-import { EditStudent } from './EditStudent';
+import {EditStudent} from './EditStudent';
 import swal from 'sweetalert'
 
 export const ListStudents = () => {
@@ -51,7 +51,7 @@ export const ListStudents = () => {
     const [openModalEdit, setOpenModalEdit] = useState(false);
 
     function closeModalEdit() {
-      setOpenModalEdit(false);
+        setOpenModalEdit(false);
     }
 
     const listmovies = filteredStudents.map(students => {
@@ -140,34 +140,35 @@ export const ListStudents = () => {
                                 student.numAttendant
                             }</li>
                             <div className='grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center'>
-                            <button
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => {
-                    setOpenModalEdit(true);
-                    setSelectedStudent(student._id);
-                  }}
-                >
-                  Editar
-                </button>
+                                <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                    onClick={
+                                        () => {
+                                            setOpenModalEdit(true);
+                                            setSelectedStudent(student._id);
+                                        }
+                                }>
+                                    Editar
+                                </button>
                                 <button className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
                                     onClick={
                                         () => handleDelete(student._id)
                                 }>Delete</button>
-                                  {openModalEdit && (
-                  <EditStudent
-                    studentId={selectedStudent}
-                    setOpenModalEdit={setOpenModalEdit}
-                    closeModalEdit={closeModalEdit}
-                    student={selectedStudent}
-                  />
-                )}
-                            </div>
+                                {
+                                openModalEdit && (
+                                    <EditStudent studentId={selectedStudent}
+                                        setOpenModalEdit={setOpenModalEdit}
+                                        closeModalEdit={closeModalEdit}
+                                        student={selectedStudent}/>
+                                )
+                            } </div>
 
                             <h2 className='text-xl font-semibold font-sans text-center text-sky-700'>Formularios de evaluación</h2>
 
-                
-                            <Link to={"/AddInfo"}>
-                                <button>Crear un perfil Psico – Socio – Escolar del niño.</button>
+
+                            <Link to={
+                                `/AddInfo/${student._id}`
+                            }>
+                                <button >Crear un perfil Psico – Socio – Escolar del niño.</button>
                             </Link>
                         </ul>
 

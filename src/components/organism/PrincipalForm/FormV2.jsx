@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function AddInfo() {
   const [schoolDescription, setschoolDescription] = useState("");
@@ -19,11 +20,14 @@ function AddInfo() {
   const [accompanimentDescription, setAccompanimentDescription] = useState("");
   const [accompanimentAction, setAccompanimentAction] = useState("");
   const [selectedInfo, setSelectedInfo] = useState(null);
+  const { id } = useParams();
 
+  const kid = id
   const handleSubmit = (event) => {
     event.preventDefault();
             axios
               .post("https://cire-backend.onrender.com/principalForm/", {
+                kid,
                 schoolDescription,
                 schoolAction,
                 behaviorDescription,
