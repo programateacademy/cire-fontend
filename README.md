@@ -47,12 +47,12 @@
 
 ><p> En proceso...</p>
 
-<h2 align="center">AUTHORS 🧑‍💻</h2>
-<p align="center"> Joselin Lozada - *Lider TÉCNICA* </p>
-<p align="center"> Laura Celis - *Lider FRONTEND* </p>
-<p align="center"> Juan Jose Niño - *Lider BACKEND* </p>
-<p align="center"> Maria Fernanda Pantoja - *SCRUM* </p>
-<p align="center"> Tatiana Castro - *Desarrolladora* </p>
-<p align="center"> Laura Duarte - *Desarrolladora* </p>
+<h2 align="center">AUTORES 🧑‍💻</h2>
+<p align="center"> :ok_woman: Joselin Lozada - Lider TÉCNICA </p>
+<p align="center"> Laura Celis - Lider FRONTEND </p>
+<p align="center"> Juan Jose Niño - Lider BACKEND</p>
+<p align="center"> Maria Fernanda Pantoja - SCRUM </p>
+<p align="center"> :woman: Tatiana Castro - Desarrolladora </p>
+<p align="center"> :woman: Laura Duarte - Desarrolladora </p>
 
-    </br>
+
