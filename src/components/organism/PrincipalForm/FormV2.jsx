@@ -210,8 +210,8 @@ function AddInfo() {
           />
         </label>
 
-        <button type="submit">
-          {selectedInfo ? "Save changes" : "Add iformation"}
+        <button onClick={selectedInfo} type="submit">
+          Guardar
         </button>
         {selectedInfo && (
           <button type="button" onClick={() => setSelectedInfo(null)}>

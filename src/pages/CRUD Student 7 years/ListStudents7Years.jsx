@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
-import AddStudent7Years from './AddStudent7Years';
-import EditStudent7Years from './EditStudent7Years';
+import AddStudent from '../../components/organism/CRUD Students/AddStudent';
+import EditStudent from '../../components/organism/CRUD Students/EditStudent';
 import swal from 'sweetalert'
 
 export const ListStudents7Years = () => {
@@ -104,7 +104,7 @@ export const ListStudents7Years = () => {
                 Agregar nuevo estudiante</button>
 
             {
-            openModal && <AddStudent7Years setOpenModal={setOpenModal}
+            openModal && <AddStudent setOpenModal={setOpenModal}
                 closeModal={closeModal}/>
         }
 
@@ -154,7 +154,7 @@ export const ListStudents7Years = () => {
                                         () => handleDelete(student._id)
                                 }>Delete</button>
                                   {openModalEdit && (
-                  <EditStudent7Years
+                  <EditStudent
                     studentId={selectedStudent}
                     setOpenModalEdit={setOpenModalEdit}
                     closeModalEdit={closeModalEdit}

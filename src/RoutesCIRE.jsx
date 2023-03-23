@@ -3,9 +3,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {EditInfo} from "./components/organism/PrincipalForm/EditV2";
 import AddInfo from "./components/organism/PrincipalForm/FormV2";
 import {Categories} from "./pages/Categories";
-import AddStudent from "./pages/CRUD Student 5 years/AddStudent";
 import {ListStudents} from "./pages/CRUD Student 5 years/ListStudents";
-import {EditStudent} from "./pages/CRUD Student 5 years/EditStudent";
+import AddStudent from "./components/organism/CRUD Students/AddStudent";
+import EditStudent from "./components/organism/CRUD Students/EditStudent";
 import {ListStudents6Years} from "./pages/CRUD Student 6 years/ListStudents6Years"
 import Navbar from "./components/organism/Navbar";
 import {ListStudents7Years} from "./pages/CRUD Student 7 years/ListStudents7Years"

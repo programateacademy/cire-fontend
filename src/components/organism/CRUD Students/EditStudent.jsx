@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import Swal from 'sweetalert2'
 
-export const EditStudent9Years = ({ setOpenModalEdit, studentId }) => {
+export const EditStudent = ({ setOpenModalEdit, studentId }) => {
     
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -151,4 +151,4 @@ export const EditStudent9Years = ({ setOpenModalEdit, studentId }) => {
     );
 
 }
-export default EditStudent9Years;
+export default EditStudent;

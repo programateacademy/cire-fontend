@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom';
-import AddStudent from './AddStudent';
-import {EditStudent} from './EditStudent';
+import AddStudent from '../../components/organism/CRUD Students/AddStudent';
+import EditStudent from '../../components/organism/CRUD Students/EditStudent';
 import swal from 'sweetalert'
 
 export const ListStudents = () => {
