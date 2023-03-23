@@ -4,7 +4,6 @@
 
 <h3 align="center">FUNCIONALIDADES </h3>
 
-<h2>Login con autentificación de usuario- Superadministrador y Profesional-Voluntario️<h3>
 <h2>SUPERADMINISTRADOR</h2>
 <p>Añadir nuevos profesionales-voluntarios a la base de datos de la fundación.</p>
 <p>Editar los datos de los profesionales-voluntarios ya existentes.</p>
@@ -24,16 +23,16 @@
 <div>
 <h2 align="center">FRONTEND</h2>
 <p> 
-<h4>React</h4> 
-<h4>Tailwind CSS</h4>
-<h4>Node.js</h4>    
-<h4>Axios</h4>  
+<h5>React</h5> 
+<h5>Tailwind CSS</h5>
+<h5>Node.js</h5>    
+<h5>Axios</h5>  
 </p>
 
 <h2 align="center">BACKEND</h2>
-<p><h4>MongoDB</h4>
-<p><h4>Express</h4>
-<h4>Insomnia</h4>
+<h5>MongoDB</h5>
+<h5>Express</h5>
+<h5>Insomnia</h5>
 </p>
 </div>
  
