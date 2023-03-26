@@ -35,7 +35,11 @@ function AddProfessional({ setOpenModal }) {
       phone,
       email,
       password,
-    }).then(response => {
+    },{
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  }).then(response => {
       setProfessionals([professionals, response.data.body]);
       setName("");
       setAge("");
