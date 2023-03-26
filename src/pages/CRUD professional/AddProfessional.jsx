@@ -5,19 +5,22 @@ import Swal from 'sweetalert2';
 function AddProfessional({ setOpenModal }) {
   const [professionals, setProfessionals] = useState([]);
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState(0);
   const [occupation, setOccupation] = useState("");
-  const [numberid, setNumberId] = useState("");
-  const [phone, setPhone] = useState("");
+  const [numberId, setNumberId] = useState("");
+  const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [selectedVolunteer, setSelectedVolunteer] = useState(null);
-
+  const [token, setToken] = useState("")
+  const [role, setRole] = useState("pro")
   useEffect(() => {
+    setToken (localStorage.getItem("token"))
     axios
       .get("https://cire-backend.onrender.com/professional")
       .then((response) => {
         setProfessionals(response.data);
+    
       })
       .catch((error) => {
         console.log(error);
@@ -27,33 +30,34 @@ function AddProfessional({ setOpenModal }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('https://cire-backend.onrender.com/professional/', {
+    axios.post('http://localhost:3030/auth/register', {
       name,
       age,
-      numberid,
+      numberId,
       occupation,
       phone,
       email,
       password,
+      role
     },{
       headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
       }
   }).then(response => {
-      setProfessionals([professionals, response.data.body]);
+      setProfessionals([professionals, response.data]);
       setName("");
-      setAge("");
+      setAge(0);
       setOccupation("");
       setNumberId("");
-      setPhone("");
+      setPhone(0);
       setEmail("");
       setPassword("");
         Swal.fire({title: "El profesional se agregó correctamente",
         icon: 'success'})
     }).catch(error => {
-      console.error('Error updating profesional:', error);
+      console.error(error);
                     Swal.fire({
-                      title: 'Error al actualizar al profesional',
+                      title: 'Error al agregar al profesional',
                       icon: 'error'
                     });
 
@@ -111,7 +115,7 @@ function AddProfessional({ setOpenModal }) {
                   placeholder="Introduce el numero de identificación"
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={numberid}
+                  value={numberId}
                   onChange={(e) => setNumberId(e.target.value)}
                 />
               </label>
