@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import AddStudent from '../../components/organism/CRUD Students/AddStudent';
 import EditStudent from '../../components/organism/CRUD Students/EditStudent';
 import swal from 'sweetalert'
-
+import Navbar from '../../components/organism/NavbarAdmin'
 export const ListStudents8Years = () => {
 
     const [students, setStudents] = useState([]);
@@ -96,7 +96,7 @@ export const ListStudents8Years = () => {
     return (
 
         <div className='bg-indigo-100 h-full'>
-
+            <Navbar />
             <button className=" ml-4 bg-lime-700 text-white px-4 rounded-lg mt-5 mb-5 w-60" type="button"
                 onClick={
                     () => setOpenModal(true)

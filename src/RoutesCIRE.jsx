@@ -11,7 +11,8 @@ import Navbar from "./components/organism/Navbar";
 import {ListStudents7Years} from "./pages/CRUD Student 7 years/ListStudents7Years"
 import {ListStudents8Years} from "./pages/CRUD Student 8 years/ListStudents8Years"
 import {ListStudents9Years} from "./pages/CRUD Student 9 years/ListStudents9Years"
-
+import LoginAdmin from "./pages/login/LoginAdmin"
+import LoginProfe from "./pages/login/LoginProfe"
 
 function RoutesCIRE() {
     return (
@@ -41,7 +42,11 @@ function RoutesCIRE() {
                     <Route path="/editInfo/:id"
                         element={<EditInfo/>}
                         exact></Route>
-                        
+                        <Route path='/loginAdmin' element={<LoginAdmin/>}></Route>
+			<Route path='/changePassword' element={<ChangePassword/>}></Route>
+			<Route path='/loginProfe' element={<LoginProfe/>}></Route>
+			<Route path='/ListProfessionals' element={<ListProfessionals/>}></Route>
+			<Route path='/accountprofessional' element={<AccountProffesional/>}></Route>
 
                 </Routes>
             </BrowserRouter>

@@ -12,7 +12,7 @@ export default function Navbar () {
         <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
             <div>
                 <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                   <a href="#Aboutus" className="flex items-center">
+                   <a href="/categories" className="flex items-center">
                     <img src={Logo} className="h-20 mr-3 sm:h-20" alt="Logo" />
                      <span className="self-center text-xl font-semibold whitespace-nowrap text-teal-500">CIRÉ</span>
                       </a>
@@ -65,7 +65,7 @@ export default function Navbar () {
                             <a href="/categories">Home</a>
                         </li>
                         <li className="text-teal-500 hover:text-blue-600">
-                            <a href="#Habilidades">Panel profesionales</a>
+                            <a href="">Cerrar sesion</a>
                         </li>
                        
                     </ul>
