@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AddProfessional from "./AddProfessional";
 import { EditProfessional } from "./EditProfessional";
-import Navbar from "../../components/organism/NavbarAdmin";
+import Navbar from "../../components/organism/NavbarProfe";
 import swal from 'sweetalert';
+import { motion } from "framer-motion";
 
 export const ListProfessionals = () => {
   const [professionals, setProfessionals] = useState([]);
@@ -83,7 +84,7 @@ export const ListProfessionals = () => {
     <div className="bg-indigo-100 h-screen">
         <Navbar />
       <button
-        className=" ml-5 bg-lime-700 text-white px-4 rounded mt-5 mb-5"
+        className=" ml-20 shadow-ls bg-lime-700 text-white px-4 rounded-lg mt-10 mb-14 w-80 h-16 text-lg font-semibold hover:bg-green-500"
         type="button"
         onClick={() => setOpenModal(true)}
       >
@@ -98,15 +99,17 @@ export const ListProfessionals = () => {
         type="text"
         placeholder="Buscar por nombre"
         onChange={(event) => setSearchTerm(event.target.value)}
-        className="border border-gray-400 p-1 py-px rounded-lg m-5 w-60"
+        className="border border-gray-400 p-1 py-px rounded-lg m-5 h-10 w-80"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center text-center">
         {filteredProfessionals.map((professional) => (
-          <div className=" bg-white rounded-lg w-96">
+          <motion.div className=" bg-white rounded-lg w-96" initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05 }}>
             <ul>
               <br />
-              <h2 className="text-xl font-semibold font-sans text-center text-sky-700">
+              <h2 className="text-xl font-bold font-sans text-center text-sky-700">
                 Información básica
               </h2>
               <br />
@@ -114,12 +117,14 @@ export const ListProfessionals = () => {
               <li>Edad: {professional.age}</li>
               <li>Profesión: {professional.occupation}</li>
               <li>Cedula de ciudadania: {professional.numberid}</li>
-              <li>Celular del profesional: {professional.phone}</li>
-              <h2 className="text-xl font-semibold font-sans text-center text-sky-700">
+              <li>Celular: {professional.phone}</li>
+              <br />
+              <h2 className="text-xl font-bold font-sans text-center text-cyan-500 pt-50">
                 Cuenta para ingreso a la plataforma
               </h2>
+              <br />
               <li>Correo: {professional.userId.email}</li>
-              <li>Contraseña: **** </li>
+              <li>Contraseña: ****** </li>
               <div className="grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center">
                 <button
                   className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -147,7 +152,7 @@ export const ListProfessionals = () => {
                 )}
               </div>
             </ul>
-          </div>
+          </motion.div>
         ))}{" "}
       </div>
     </div>
