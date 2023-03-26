@@ -9,12 +9,14 @@ export const ListProfessionals = () => {
   const [professionals, setProfessionals] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProfessional, setSelectedProfessional] = useState(null);
-
+  const [token, setToken] = useState("")
+  
   useEffect(() => {
+    setToken (localStorage.getItem("token"))
     axios
-      .get("https://cire-backend.onrender.com/professional")
+      .get("http://localhost:3030/professional")
       .then((response) => {
-        setProfessionals(response.data.body);
+        setProfessionals(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -30,7 +32,10 @@ export const ListProfessionals = () => {
         dangerMode: true
     }).then((willDelete) => {
         if (willDelete) {
-            axios.delete(`https://cire-backend.onrender.com/professional/${id}`).then(response => { // actualizar la lista de estudiantes después de eliminar uno
+            axios.delete(`http://localhost:3030/professional/${id}`, {
+              headers: {
+                  Authorization: `${token}`
+              }} ).then(response => { // actualizar la lista de estudiantes después de eliminar uno
                 setProfessionals(professionals.filter(professional => professional._id !== id));
             }).catch(error => {
                 console.log(error);
@@ -66,8 +71,8 @@ export const ListProfessionals = () => {
               <li className="list-group-item">{professionals.occupation}</li>
               <li className="list-group-item">{professionals.numberid}</li>
               <li className="list-group-item">{professionals.phone}</li>
-              <li className="list-group-item">{professionals.email}</li>
-              <li className="list-group-item">{professionals.password}</li>
+              <li className="list-group-item">{professionals.userId.email}</li>
+              <li className="list-group-item">{professionals.userId.password}</li>
             </ul>
           </div>
         </div>
@@ -113,8 +118,8 @@ export const ListProfessionals = () => {
               <h2 className="text-xl font-semibold font-sans text-center text-sky-700">
                 Cuenta para ingreso a la plataforma
               </h2>
-              <li>Correo: {professional.email}</li>
-              <li>Contraseña: ****** </li>
+              <li>Correo: {professional.userId.email}</li>
+              <li>Contraseña: **** </li>
               <div className="grid grid-rows-1 grid-flow-col gap-6 px-32 m-14 justify-center">
                 <button
                   className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

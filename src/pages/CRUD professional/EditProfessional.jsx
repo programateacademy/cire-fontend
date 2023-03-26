@@ -4,10 +4,10 @@ import Swal from 'sweetalert2'
 
 export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [age, setAge] = useState(0);
   const [occupation, setOccupation] = useState("");
-  const [numberid, setNumberId] = useState("");
-  const [phone, setPhone] = useState("");
+  const [numberid, setNumberId] = useState(0);
+  const [phone, setPhone] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,8 +16,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
       .get(`https://cire-backend.onrender.com/professional/${professionalId}`)
       .then((res) => {
         console.log(professionalId);
-        console.log(res.data.body)
-        const professional = res.data.body;
+        console.log(res.data)
+        const professional = res.data;
         setName(professional.name);
         setAge(professional.age);
         setOccupation(professional.occupation);
