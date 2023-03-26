@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import AddProfessional from "./AddProfessional";
 import { EditProfessional } from "./EditProfessional";
 import Navbar from "../../components/organism/NavbarAdmin";
