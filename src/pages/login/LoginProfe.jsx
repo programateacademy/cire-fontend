@@ -15,38 +15,39 @@ export default function LoginProfe() {
     event.preventDefault();
 
     try {
-        const response = await axios.get('https://cire-backend.onrender.com/professional');
+      const response = await axios.post(
+        'https://cire-backend.onrender.com/auth/login',
+        {
+          email: email,
+          password: password,
+        }
+      );
 
-        const validEmails = response.data.body((item) => item.email);
-        const validPasswords = response.data.body((item) => item.password);
-  
-        const isValidEmail = validEmails.includes(email);
-        const isValidPassword = validPasswords.includes(password);
-  
-        if (isValidEmail && isValidPassword) {
-          window.location.href = '/ListProfessionals';
-        } else {
-          throw new Error('El correo o la contraseña son incorrectos');
-        }
-      } catch (error) {
-        console.error(error);
-        setLoginAttempts(loginAttempts + 1);
-        if (loginAttempts >= MAX_LOGIN_ATTEMPTS - 1) {
-          setIsDisabled(true);
-          Swal.fire({
-            icon: 'error',
-            title: '¡Error!',
-            text: `Ha excedido el número máximo de intentos (${MAX_LOGIN_ATTEMPTS}). Inténtelo de nuevo más tarde.`,
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: '¡Error!',
-            text: 'El correo o la contraseña son incorrectos',
-          });
-        }
+      const token = localStorage.setItem('token');
+      if (response.data.body === 'superAdmin') {
+        window.location.href = '/ListProfessionals';
+      } else {
+        throw new Error('No tiene acceso');
       }
-    };
+    } catch (error) {
+      console.error(error);
+      setLoginAttempts(loginAttempts + 1);
+      if (loginAttempts >= MAX_LOGIN_ATTEMPTS - 1) {
+        setIsDisabled(true);
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: `Ha excedido el número máximo de intentos (${MAX_LOGIN_ATTEMPTS}). Inténtelo de nuevo más tarde.`,
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: '¡Error!',
+          text: 'El correo o la contraseña son incorrectos',
+        });
+      }
+    }
+  };
  
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
