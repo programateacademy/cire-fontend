@@ -20,16 +20,18 @@ export const EditInfo = () => {
   const [parentAction, setParentAction] = useState("");
   const [accompanimentDescription, setAccompanimentDescription] = useState("");
   const [accompanimentAction, setAccompanimentAction] = useState("");
+  // const { id } = useParams();
+  // const kid = id;
 
   useEffect(() => {
     axios
       .get("https://cire-backend.onrender.com/principalForm/", {
-        id: params.id,
+      
       })
       .then((res) => {
         console.log(res.data[0]);
         const formOnee =
-          res.data[0] > setschoolDescription(formOnee.schoolDescription);
+          res.data.body[0] > setschoolDescription(formOnee.schoolDescription);
         setschoolAction(formOnee.schoolAction);
         setBehaviorDescription(formOnee.behaviorDescription);
         setBehaviorAction(formOnee.behaviorAction);
@@ -67,13 +69,13 @@ export const EditInfo = () => {
       accompanimentDescription: accompanimentDescription,
       accompanimentAction: accompanimentAction,
 
-      id: params.id,
+    //  kid,
     };
 
     console.log(ediInfo);
 
     axios
-      .put("https://cire-backend.onrender.com/principalForm/", editFormOne )
+      .put("https://cire-backend.onrender.com/principalForm/", editFormOne)
       .then((res) => {
         console.log(res.data);
         alert(res.data);
@@ -85,145 +87,141 @@ export const EditInfo = () => {
 
   return (
     <div>
-     <label>
-          Nombre:
-          <input
-            type="text"
-            value={schoolDescription}
-            onChange={(e) => setschoolDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Edad:
-          <input
-            type="text"
-            value={schoolAction}
-            onChange={(e) => setschoolAction(e.target.value)}
-          />
-        </label>
-        <label>
-          Representante:
-          <input
-            type="text"
-            value={behaviorDescription}
-            onChange={(e) => setBehaviorDescription(e.target.value)}
-          />
-        </label>
+      <label>
+        Nombre:
+        <input
+          type="text"
+          value={schoolDescription}
+          onChange={(e) => setschoolDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Edad:
+        <input
+          type="text"
+          value={schoolAction}
+          onChange={(e) => setschoolAction(e.target.value)}
+        />
+      </label>
+      <label>
+        Representante:
+        <input
+          type="text"
+          value={behaviorDescription}
+          onChange={(e) => setBehaviorDescription(e.target.value)}
+        />
+      </label>
 
-        <label>
-          Género:
-          <input
-            type="text"
-            value={behaviorAction}
-            onChange={(e) => setBehaviorAction(e.target.value)}
-          />
-        </label>
+      <label>
+        Género:
+        <input
+          type="text"
+          value={behaviorAction}
+          onChange={(e) => setBehaviorAction(e.target.value)}
+        />
+      </label>
 
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={relationDescription}
-            onChange={(e) => setRelationDescription(e.target.value)}
-          />
-        </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={relationDescription}
+          onChange={(e) => setRelationDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={relationACtion}
+          onChange={(e) => setRelationACtion(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workClassDescription}
+          onChange={(e) => setWorkClassDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workClassAction}
+          onChange={(e) => setWorkClassAction(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workCireDescription}
+          onChange={(e) => setWorkCireDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workCireAction}
+          onChange={(e) => setWorkCireAction(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workHomeDescription}
+          onChange={(e) => setWorkHomeDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={workHomeAction}
+          onChange={(e) => setWorkHomeAction(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={parentDescription}
+          onChange={(e) => setParentDescription(e.target.value)}
+        />
+      </label>
 
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={relationACtion}
-            onChange={(e) => setRelationACtion(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workClassDescription}
-            onChange={(e) => setWorkClassDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workClassAction}
-            onChange={(e) => setWorkClassAction(e.target.value)}
-          />
-        </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={parentAction}
+          onChange={(e) => setParentAction(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={accompanimentDescription}
+          onChange={(e) => setAccompanimentDescription(e.target.value)}
+        />
+      </label>
+      <label>
+        Télefono del representante:
+        <input
+          type="text"
+          value={accompanimentAction}
+          onChange={(e) => setAccompanimentAction(e.target.value)}
+        />
+      </label>
 
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workCireDescription}
-            onChange={(e) => setWorkCireDescription(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workCireAction}
-            onChange={(e) => setWorkCireAction(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workHomeDescription}
-            onChange={(e) => setWorkHomeDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={workHomeAction}
-            onChange={(e) => setWorkHomeAction(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={parentDescription}
-            onChange={(e) => setParentDescription(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={parentAction}
-            onChange={(e) => setParentAction(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={accompanimentDescription}
-            onChange={(e) => setAccompanimentDescription(e.target.value)}
-          />
-        </label>
-        <label>
-          Télefono del representante:
-          <input
-            type="text"
-            value={accompanimentAction}
-            onChange={(e) => setAccompanimentAction(e.target.value)}
-          />
-        </label>
-
-      <button className="btn btn-success" onClick={ediInfo}>
-        Enviar
-      </button>
+      <Link to={`/EdiInfo/${principalForm._id}`}>
+        <button onClick={ediInfo}>Editar</button>
+      </Link>
     </div>
   );
 };

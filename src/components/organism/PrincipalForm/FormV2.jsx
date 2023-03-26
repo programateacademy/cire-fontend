@@ -70,9 +70,11 @@ function AddInfo() {
           }
         
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
+    <div class="w-full h-50 max-w-s">
+      <form class="bg-red shadow-md rounded px-10 pt-6 pb-8 mb-10 mt-12" onSubmit={handleSubmit}>
+      <h2 className="text-blue-800 font-bold text-2xl">ACADÉMICO</h2>
+        <label className="block mb-4 font-semibold ">
+        <p className="text-2xl">Trabaja en clases</p>
         Escribe una descripción
           <input
             type="text"
@@ -81,7 +83,7 @@ function AddInfo() {
             onChange={(e) => setschoolDescription(e.target.value)}
           />
         </label>
-        <label>
+        <label className="block mb-4 font-semibold ">
         Escribe el plan
           <input
             type="text"
@@ -90,7 +92,8 @@ function AddInfo() {
             onChange={(e) => setschoolAction(e.target.value)}
           />
         </label>
-        <label>
+        <label className="block mb-4 font-semibold ">
+        <p className="text-2xl font-semibold">Trabaja en casa</p>
         Escribe una descripción
           <input
             type="text"
@@ -99,7 +102,7 @@ function AddInfo() {
           />
         </label>
 
-        <label>
+        <label className="font-semibold">
         Escribe el plan
           <input
             type="text"
@@ -108,7 +111,8 @@ function AddInfo() {
           />
         </label>
 
-        <label>
+        <label className="block mb-4 font-semibold ">
+        <p className="text-2xl font-semibold">Trabaja en CIRÉ</p>
           Escribe una descripción
           <input
             type="text"
@@ -116,7 +120,7 @@ function AddInfo() {
             onChange={(e) => setRelationDescription(e.target.value)}
           />
         </label>
-
+        <h2 className="text-blue-800 font-bold text-2xl">CONVIVENCIA</h2>
         <label>
         Escribe el plan
           <input
@@ -125,6 +129,7 @@ function AddInfo() {
             onChange={(e) => setRelationACtion(e.target.value)}
           />
         </label>
+
         <label>
         Escribe una descripción
           <input
@@ -210,7 +215,7 @@ function AddInfo() {
           />
         </label>
 
-        <button onClick={selectedInfo} type="submit">
+        <button className="bg-green" onClick={selectedInfo} type="submit">
           Guardar
         </button>
         {selectedInfo && (
