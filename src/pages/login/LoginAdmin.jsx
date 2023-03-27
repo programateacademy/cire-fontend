@@ -16,7 +16,7 @@ export default function LoginAdmin() {
     event.preventDefault();
     //Consuming API
     try {
-      const response = await axios.post("http://localhost:3030/auth/login", {
+      const response = await axios.post("https://cire-backend-63yh.onrender.com/auth/login", {
         email,
         password,
       });

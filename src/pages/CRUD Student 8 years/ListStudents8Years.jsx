@@ -12,7 +12,7 @@ export const ListStudents8Years = () => {
     const [selectedStudent, setSelectedStudent] = useState(null);
 
     useEffect(() => {
-        axios.get('https://cire-backend.onrender.com/kid?age=8').then(response => {
+        axios.get('https://cire-backend-63yh.onrender.com/kid?age=8').then(response => {
             setStudents(response.data.body);
         }).catch(error => {
             console.log(error);
@@ -29,7 +29,7 @@ export const ListStudents8Years = () => {
             dangerMode: true
         }).then((willDelete) => {
             if (willDelete) {
-                axios.delete(`https://cire-backend.onrender.com/kid/${id}`).then(response => { // actualizar la lista de estudiantes después de eliminar uno
+                axios.delete(`https://cire-backend-63yh.onrender.com/kid/${id}`).then(response => { // actualizar la lista de estudiantes después de eliminar uno
                     setStudents(students.filter(student => student._id !== id));
                 }).catch(error => {
                     console.log(error);

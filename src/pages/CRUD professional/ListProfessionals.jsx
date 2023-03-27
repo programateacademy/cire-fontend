@@ -11,11 +11,13 @@ export const ListProfessionals = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProfessional, setSelectedProfessional] = useState(null);
   const [token, setToken] = useState("")
+
+  
   
   useEffect(() => {
     setToken (localStorage.getItem("token"))
     axios
-      .get("http://localhost:3030/professional")
+      .get("https://cire-backend-63yh.onrender.com/professional")
       .then((response) => {
         setProfessionals(response.data);
       })
@@ -33,9 +35,9 @@ export const ListProfessionals = () => {
         dangerMode: true
     }).then((willDelete) => {
         if (willDelete) {
-            axios.delete(`http://localhost:3030/professional/${id}`, {
+            axios.delete(`https://cire-backend-63yh.onrender.com/professional/${id}`, {
               headers: {
-                  Authorization: `${token}`
+                  Authorization: `Bearer ${token}`
               }} ).then(response => { // actualizar la lista de estudiantes después de eliminar uno
                 setProfessionals(professionals.filter(professional => professional._id !== id));
             }).catch(error => {
@@ -62,7 +64,7 @@ export const ListProfessionals = () => {
     return professional.name && professional.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-  const listmovies = filteredProfessionals.map((professionals) => {
+  const listprofesionals = filteredProfessionals.map((professionals) => {
     return (
       <div className="container" key={professionals.id}>
         <div className="row">
@@ -107,7 +109,7 @@ export const ListProfessionals = () => {
         {filteredProfessionals.map((professional) => (
           <motion.div className=" bg-white rounded-lg w-96" initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}>
+            whileHover={{ scale: 1 }}>
             <ul>
               <br />
               <h2 className="text-xl font-bold font-sans text-center text-sky-700">

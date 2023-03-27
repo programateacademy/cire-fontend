@@ -15,7 +15,7 @@ export const ListStudents = () => {
 
   useEffect(() => {
     axios
-      .get("https://cire-backend.onrender.com/kid?age=5")
+      .get("https://cire-backend-63yh.onrender.com/kid?age=5")
       .then((response) => {
         setStudents(response.data.body);
       })
@@ -34,7 +34,7 @@ export const ListStudents = () => {
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`https://cire-backend.onrender.com/kid/${id}`)
+          .delete(`https://cire-backend-63yh.onrender.com/kid/${id}`)
           .then((response) => {
             // actualizar la lista de estudiantes después de eliminar uno
             setStudents(students.filter((student) => student._id !== id));
@@ -107,7 +107,7 @@ export const ListStudents = () => {
             className=" bg-white rounded-lg w-96 shadow-md mb-14"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1 }}
           >
             <ul>
               <br />

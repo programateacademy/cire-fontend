@@ -18,7 +18,7 @@ function AddProfessional({ setOpenModal }) {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     axios
-      .get("https://cire-backend.onrender.com/professional")
+      .get("https://cire-backend-63yh.onrender.com/professional")
       .then((response) => {
         setProfessionals(response.data);
       })
@@ -33,7 +33,7 @@ function AddProfessional({ setOpenModal }) {
 
     axios
       .post(
-        "http://localhost:3030/auth/register",
+        "https://cire-backend-63yh.onrender.com/auth/register",
         {
           name,
           age,
@@ -46,7 +46,7 @@ function AddProfessional({ setOpenModal }) {
         },
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: `Beader ${token}`,
           },
         }
       )
@@ -83,7 +83,7 @@ function AddProfessional({ setOpenModal }) {
   //     role, };
   
   //   axios
-  //     .put(`http://localhost:3030/professional/${id}`, updateData, {
+  //     .put(`https://cire-backend-63yh.onrender.com/professional/${id}`, updateData, {
   //       headers: {
   //         Authorization: `${token}`,
   //       },
