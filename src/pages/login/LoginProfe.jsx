@@ -21,9 +21,37 @@ export default function LoginProfe() {
         password,
       });
       localStorage.setItem("token", response.data.token);
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'success',
+        title: 'Inicio de sesión satisfactorio'
+      })
       navigate("/categories");
-    } catch (error) {
+    } 
+    
+    catch (error) {
+    //Login structure
+    Swal.fire({
+        icon: 'error',
+        title: 'Datos incorrectos',
+        text: 'Intentelo de nuevos',
+        confirmButtonColor: '#0ea5e9'
+
+      });
+    
       console.error(error);
+      
     }
   };
 

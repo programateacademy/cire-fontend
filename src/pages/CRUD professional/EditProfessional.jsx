@@ -59,7 +59,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
       .catch((error) => {
         console.error('Error updating student:', error);
         Swal.fire({
-          title: 'Error al actualizar al estudiante',
+          title: 'Error al actualizar al profesional',
           icon: 'error'
         });
       });

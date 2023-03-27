@@ -151,17 +151,21 @@ export const ListStudents = () => {
               </h2>
 
               <Link to={`/AddInfo/${student._id}`}>
-              <button className="text-sm h-20 font-medium hover:text-sky-600">
-        <label className="inline-flex items-center">
-          <input
-            type="checkbox"
-            className="form-checkbox h-5 w-5 text-blue-600"
-            checked={isChecked}
-            onChange={(e) => setIsChecked(e.target.checked)}
-          />
-          <span className="ml-1">{isChecked ? 'Perfil creado' : 'Crear un perfil Psico – Socio – Escolar del niño'}</span>
-        </label>
-      </button>
+                <button className="text-sm h-20 font-medium hover:text-sky-600">
+                  <label className="inline-flex items-center">
+                    <input
+                      type="checkbox"
+                      className="form-checkbox h-5 w-5 text-blue-600"
+                      checked={isChecked}
+                      onChange={(e) => setIsChecked(e.target.checked)}
+                    />
+                    <span className="ml-1">
+                      {isChecked
+                        ? "Perfil creado"
+                        : "Crear un perfil Psico – Socio – Escolar del niño"}
+                    </span>
+                  </label>
+                </button>
               </Link>
             </ul>
           </motion.div>

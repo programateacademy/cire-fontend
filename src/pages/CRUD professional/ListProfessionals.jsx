@@ -45,9 +45,10 @@ export const ListProfessionals = () => {
     });
 };
 
-  const [openModal, setOpenModal] = useState(false);
 
-  function closeModal() {
+
+  const [openModal, setOpenModal] = useState(false);
+   function closeModal() {
     setOpenModal(false);
   }
 

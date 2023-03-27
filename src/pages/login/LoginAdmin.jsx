@@ -23,6 +23,12 @@ export default function LoginAdmin() {
       localStorage.setItem("token", response.data.token);
       navigate("/listprofessionals");
     } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Datos incorrectos',
+            text: 'Intentelo nuevamente',
+            confirmButtonColor: '#0ea5e9'
+          });
       console.error(error);
     }
   };
@@ -60,7 +66,9 @@ export default function LoginAdmin() {
               id="email"
               placeholder="Ingrese su correo electrónico"
               value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)
+              }
+              required
             />
           </motion.div>
           <motion.div
@@ -79,6 +87,7 @@ export default function LoginAdmin() {
               placeholder="Ingrese su contraseña"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
+              required
             />
           </motion.div>
 
