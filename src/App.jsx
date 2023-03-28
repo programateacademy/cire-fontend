@@ -6,10 +6,10 @@ import {Categories} from "./pages/Categories";
 import {ListStudents} from "./pages/CRUD Student 5 years/ListStudents";
 import AddStudent from "./components/organism/CRUD Students/AddStudent";
 import EditStudent from "./components/organism/CRUD Students/EditStudent";
-import {ListStudents6Years} from "./pages/CRUD Student 6 years/ListStudents6Years"
-import {ListStudents7Years} from "./pages/CRUD Student 7 years/ListStudents7Years"
-import {ListStudents8Years} from "./pages/CRUD Student 8 years/ListStudents8Years"
-import {ListStudents9Years} from "./pages/CRUD Student 9 years/ListStudents9Years"
+import ListStudents6Years from "./pages/CRUD Student 6 years/ListStudents6Years"
+import ListStudents7Years from "./pages/CRUD Student 7 years/ListStudents7Years"
+import ListStudents8Years from "./pages/CRUD Student 8 years/ListStudents8Years"
+import ListStudents9Years from "./pages/CRUD Student 9 years/ListStudents9Years"
 import LoginAdmin from "./pages/login/LoginAdmin"
 import LoginProfe from "./pages/login/LoginProfe"
 import ChangePassword from "./pages/login/ChangePassword"
