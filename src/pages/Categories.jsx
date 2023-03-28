@@ -6,6 +6,7 @@ import ochoaños from "../assets/images/categories/categories8.svg";
 import nueveteaños from "../assets/images/categories/categories9.svg";
 import Navbar from "../components/organism/NavbarAdmin";
 import { motion } from "framer-motion";
+import { ListStudents } from "./CRUD Student 5 years/ListStudents";
 export const Categories = () => {
   return (
     <div className="bg-indigo-100 h-full">
@@ -17,9 +18,9 @@ export const Categories = () => {
       <div class="grid grid-rows-2 grid-flow-col  gap-2 justify-center mx-5 mt-20">
         <motion.div initial={{ scale: 1 }} whileHover={{ scale: 1.2 }}>
           <button>
-            {" "}
-            <a href="/list5years">
-              {" "}
+          
+            <a href={'/list5years'}>
+              
               <img src={cincoaños} alt="" />
             </a>
           </button>
