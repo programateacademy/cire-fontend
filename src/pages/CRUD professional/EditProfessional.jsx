@@ -13,7 +13,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
 
   useEffect(() => {
     axios
-      .get(`https://cire-backend-63yh.onrender.com/${professionalId}`)
+      .get(`https://cire-backend-63yh.onrender.com/professional/${professionalId}`)
       .then((res) => {
         const professional = res.data;
         setName(professional.name);
@@ -21,8 +21,8 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
         setOccupation(professional.occupation);
         setNumberId(professional.numberid);
         setPhone(professional.phone);
-        setEmail(professional.userId.email);
-        setPassword(professional.userId.password);
+        setEmail(professional.email);
+        setPassword(professional.password);
       });
   }, []);
 
@@ -46,7 +46,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-      .put(`https://cire-backend-63yh.onrender.com/${professionalId}`, editprofessionals)
+      .put(`https://cire-backend-63yh.onrender.com/professional/${professionalId}`, editprofessionals)
       .then((res) => {
         console.log(res.data.body);
         Swal.fire({
@@ -64,6 +64,7 @@ export const EditProfessional = ({ setOpenModalEdit, professionalId }) => {
   }
 });
 }
+
 
   return (
     <div className="fixed inset-0 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">

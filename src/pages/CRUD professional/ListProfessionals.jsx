@@ -84,7 +84,7 @@ export const ListProfessionals = () => {
     );
   });
   return (
-    <div className="bg-indigo-100 h-screen">
+    <div className="bg-indigo-100 h-full">
         <Navbar />
       <button
         className=" ml-20 shadow-ls bg-lime-700 text-white px-4 rounded-lg mt-10 mb-14 w-80 h-16 text-lg font-semibold hover:bg-green-500"

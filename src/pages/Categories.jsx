@@ -8,7 +8,7 @@ import Navbar from "../components/organism/NavbarAdmin";
 import { motion } from "framer-motion";
 export const Categories = () => {
   return (
-    <div className="bg-indigo-100 h-screen">
+    <div className="bg-indigo-100 h-full">
       <Navbar />
       <div className="text-2xl pt-5 font-semibold font-sans text-zinc-600 text-center">
         Selecciona una categoría para ver la información
