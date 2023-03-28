@@ -21,7 +21,7 @@ function App() {
         <>
            
             <BrowserRouter>
-                <Routes> {/* <Route path="/" element={<AddInfo />}></Route> */}
+                <Routes> 
                     <Route path='/categories'
                         element={<Categories/>}></Route>
                     <Route path='/addstudent'
