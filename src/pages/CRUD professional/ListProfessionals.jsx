@@ -38,7 +38,7 @@ export const ListProfessionals = () => {
             axios.delete(`https://cire-backend-63yh.onrender.com/professional/${id}`, {
               headers: {
                   Authorization: `Bearer ${token}`
-              }} ).then(response => { // actualizar la lista de estudiantes después de eliminar uno
+              }} ).then(response => { // actualizar la lista de estudiantes después de eliminar
                 setProfessionals(professionals.filter(professional => professional._id !== id));
             }).catch(error => {
                 console.log(error);
